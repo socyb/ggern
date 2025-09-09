@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Actividad 4 · (In)Essential Bordering: Canadá, COVID y movilidad</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    :root{
+      --teal:#0b8a8f;
+      --teal-dark:#086b6f;
+      --sun:#ffb64d;
+      --coral:#ff4b4b;
+      --cream:#fff7ec;
+      --ink:#103338;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#f6fcfc}
+    a{color:var(--teal-dark);text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{position:relative;overflow:hidden;color:white}
+    .hero{
+      padding:3.5rem 1.25rem 2.75rem;
+      background: linear-gradient(135deg, rgba(255,75,75,.92), rgba(255,182,77,.90) 35%, rgba(11,138,143,.95) 85%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%23ffb64d"/><stop offset="100%" stop-color="%230b8a8f"/></linearGradient></defs><rect width="1200" height="400" fill="url(%23g)" opacity="0.25"/></svg>');
+      background-size:cover;
+      border-bottom:8px solid var(--coral);
+    }
+    .hero-inner{max-width:1000px;margin:0 auto}
+    .kicker{letter-spacing:.08em;text-transform:uppercase;font-weight:800;font-size:.9rem;opacity:.95}
+    .title{margin:.35rem 0 0;font-size:clamp(1.6rem,4.2vw,2.8rem);font-weight:900;line-height:1.1}
+    .subtitle{margin:.5rem 0 0;font-size:clamp(1rem,2.3vw,1.2rem);opacity:.95}
+    .container{max-width:1000px;margin:0 auto;padding:1rem 1.25rem}
+    .grid{display:grid;gap:1.2rem}
+    @media (min-width:760px){
+      .grid{grid-template-columns:repeat(12,1fr)}
+      .col-8{grid-column:span 8}
+      .col-4{grid-column:span 4}
+    }
+    .card{background:var(--cream);border-radius:18px;border:1px solid #e3efef;box-shadow:0 6px 18px rgba(11,138,143,.10);overflow:hidden}
+    .card-header{display:flex;align-items:center;gap:.6rem;padding:.9rem 1rem;background:linear-gradient(90deg,var(--coral),var(--sun));color:#1b1b1b;font-weight:800}
+    .pill{background:rgba(255,255,255,.92);padding:.2rem .6rem;border-radius:999px;font-size:.8rem;letter-spacing:.02em}
+    .card-body{padding:1.1rem 1rem 1.2rem}
+    .h3{margin:.2rem 0 .65rem;font-size:1.15rem}
+    .muted{color:#44676c}
+    ul{margin:.4rem 0 .8rem;padding-left:1.2rem}
+    li{margin:.25rem 0}
+    .q-list{border-top:1px dashed #cbe3e5;padding-top:.75rem;margin-top:.75rem}
+    .panel{background:white;border:1px solid #e3efef;border-radius:16px;padding:1rem;position:sticky;top:1rem}
+    .badge{display:inline-block;background:var(--teal);color:white;border-radius:999px;padding:.28rem .55rem;font-size:.78rem;font-weight:700}
+    .meta{font-size:.92rem;color:#33585c}
+    footer{margin-top:2rem;background:var(--teal-dark);color:#e6ffff}
+    .footer-inner{max-width:1000px;margin:0 auto;padding:1rem 1.25rem;display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:.6rem}
+    .brand .stripe{width:8px;height:28px;background:var(--coral);border-radius:3px}
+    .add{display:inline-flex;align-items:center;gap:.5rem;border:2px solid var(--teal);border-radius:999px;padding:.5rem .9rem;font-weight:700;background:white}
+    .add:hover{background:#ebfffe}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="kicker">Actividad 4.</div>
+        <h1 class="title">(In)Essential Bordering: Canadá, COVID y movilidad</h1>
+        <p class="subtitle">Migración y Desarrollo · Guía de lectura y discusión basada en <em>Macklin (2022)</em> del volumen <em>Migration and Pandemics</em>.</p>
+        <a href="presentacion.html" class="add">Modo Presentación</a>
+        <!-- Botón para regresar al índice principal -->
+        <a href="../index.html" class="add" style="margin-left:1rem;">← Regresar a actividades del curso</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+      <section class="col-8">
+        <!-- Botón para mostrar/ocultar la tarjeta -->
+        <button id="toggleCardBtn" class="add" style="margin-bottom:1.5rem;">
+          Mostrar Tarjeta 1
+        </button>
+        <!-- Tarjeta 1 oculta por defecto -->
+        <article class="card" id="t1" style="display:none;">
+          <div class="card-header">
+            <span class="pill">Tarjeta 1</span>
+            Introducción y “La frontera no excepcional”
+          </div>
+          <div class="card-body">
+            <h3 class="h3">Ideas clave</h3>
+            <ul>
+              <li><strong>Choque de movilidades:</strong> el cruce transfronterizo del virus trastocó el cruce de personas, bienes e ideas; se alteraron los patrones de movilidad y surgió sospecha social (p.ej., placas de EE.&nbsp;UU. en Canadá en 2020).</li>
+              <li><strong>Vínculo entre control en la frontera y dentro del territorio:</strong> COVID-19 hizo visible que el Estado puede regular la movilidad <em>interna</em> con similar intensidad—desde el hogar hasta provincias—difuminando la supuesta diferencia entre “frontera” y “adentro”.</li>
+              <li><strong>Walzer y los “mil fortines”:</strong> la libre circulación interna suele apoyarse en la presunción de fronteras nacionales cerradas; con la pandemia emergieron múltiples barreras subnacionales, confirmando y a la vez tensionando esa tesis.</li>
+              <li><strong>De la deseabilidad al carácter “esencial”:</strong> la clasificación tradicional (privilegio de pasaporte del Norte Global) fue temporalmente sustituida por una tipología de lo <em>esencial</em> (trabajo, interés, necesidad) definida por criterios econo‑legales‑políticos.</li>
+              <li><strong>Movilidad “permitida”, no “libre”:</strong> bajo COVID, toda movilidad se volvió sospechosa; la función de la frontera se integró en un aparato general de inmovilización para proteger la salud pública.</li>
+            </ul>
+
+            <div class="q-list">
+              <h3 class="h3">Preguntas para detonar discusión</h3>
+              <ul>
+                <li>Walzer sostiene que la libre movilidad interna se sostiene en la presunción de cierre en las fronteras nacionales. Durante la pandemia, sin embargo, el Estado canadiense extendió su soberanía al control de todos los movimientos —desde el cruce internacional hasta los desplazamientos cotidianos—, generando una situación de stasis casi total. ¿En este contexto, la experiencia canadiense confirma o desmiente la hipótesis de Walzer? ¿Qué nos revela sobre la capacidad del Estado de redefinir la movilidad como un privilegio permitido más que como un derecho?</li>
+                <li>¿Qué <em>actores</em> decidieron qué era “esencial” en Canadá (gobierno federal, provincias, sectores económicos, tribunales)? ¿Con qué criterios explícitos o implícitos?</li>
+                <li>¿Cómo se reconfiguró la jerarquía de admisibilidad durante la pandemia? Contrasta “pasaporte privilegiado” vs. “entrada por necesidad”.</li>
+                <li>Etiqueta y estigma: ¿qué efectos tuvieron narrativas como “virus chino/Wuhan”? Identifica consecuencias raciales y políticas.</li>
+                <li><strong>Comparativo México‑Canadá:</strong> en México también se distinguió entre actividades esenciales y no esenciales. ¿Quién definió esas listas a nivel federal/estatal/municipal? ¿Qué negocios o trabajadores quedaron excluidos/invisibilizados?</li>
+                <li>¿Qué implica conceptualizar la movilidad como <em>permitida</em> y no como derecho a la libre circulación? ¿Qué riesgos permanecen post‑pandemia?</li>
+              </ul>
+            </div>
+
+            <p class="muted">Nota: Esta tarjeta resume y adapta la introducción y la sección “The Unexceptional Border” de Macklin (2022), integrando un ángulo comparativo con México para el trabajo en clase.</p>
+          </div>
+        </article>
+
+        <!-- Botón para mostrar/ocultar la tarjeta 2 -->
+        <button id="toggleCard2Btn" class="add" style="margin-bottom:1.5rem;">
+          Mostrar Tarjeta 2
+        </button>
+        <!-- Tarjeta 2 oculta por defecto -->
+        <article class="card" id="t2" style="display:none;">
+          <div class="card-header">
+            <span class="pill">Tarjeta 2</span>
+            Notas pp. 27–28
+          </div>
+          <div class="card-body">
+            <h3 class="h3">Citas destacadas</h3>
+            <ul>
+              <li>“Exercising state power via the Quarantine Act… echoes a similar choice made by the federal government after 9/11 to address national security and terrorism…” (p.27)</li>
+              <li>“Reliance on the Quarantine Act and IRPA also have the effect of reinforcing a stereotype of foreignness as vector of disease and danger to the body politic.” (p.27)</li>
+              <li>“The term ‘essential’ became the stamp on the notional permit that validates movement.” (p.27)</li>
+              <li>“A non-exhaustive list of examples of discretionary or optional travel includes ‘tourism, recreation, and entertainment.’” (p.28)</li>
+            </ul>
+            <div class="q-list">
+              <h3 class="h3">Preguntas</h3>
+              <ul>
+                <li>¿Por qué el gobierno canadiense utilizó la Quarantine Act en lugar de leyes antiterroristas? ¿Qué implicaciones tiene esto en términos de derechos y control?</li>
+                <li>¿Cómo refuerza la categoría de “esencial” estereotipos sobre quién representa peligro y quién es necesario?</li>
+                <li>¿Qué actividades quedaron fuera como “opcionales” o “discrecionales”? ¿Qué revela esto sobre el modelo económico y social canadiense?</li>
+                <li>¿Cómo se relaciona la lista de viajes discrecionales con desigualdades de clase y acceso?</li>
+              </ul>
+            </div>
+            <h3 class="h3">Ideas / Posibles respuestas</h3>
+            <ul>
+              <li>El uso de la Quarantine Act buscó minimizar protecciones jurídicas y maximizar capacidad de control, replicando patrones post-11S pero bajo una narrativa sanitaria.</li>
+              <li>La etiqueta de “esencial” no solo organizó el acceso, también reforzó prejuicios: lo extranjero como amenaza y lo útil económicamente como legítimo.</li>
+              <li>Al considerar turismo o recreación como “opcionales”, se privilegió la lógica productiva sobre la social o cultural, mostrando la jerarquía económica en la movilidad.</li>
+              <li>La clasificación de viajes discrecionales refleja desigualdad: quienes podían costear turismo internacional quedaron fuera, mientras trabajadores esenciales del Sur Global fueron admitidos.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Botón para mostrar/ocultar la tarjeta 3 -->
+        <button id="toggleCard3Btn" class="add" style="margin-bottom:1.5rem;">
+          Mostrar Tarjeta 3
+        </button>
+        <article class="card" id="t3" style="display:none;">
+          <div class="card-header">
+            <span class="pill">Tarjeta 3</span>
+            Notas pp. 29–30
+          </div>
+          <div class="card-body">
+            <h3 class="h3">Citas destacadas</h3>
+            <ul>
+              <li>“It seems that Chinese citizens in China behave patriotically by remaining in China, while those abroad show their patriotism by remaining outside China.” (p.29)</li>
+              <li>“The familiar story is that the non-citizen and the racialised other (in this case, people with Asian vulnerabilities) are the targets of outsider status — and an assumption they always let threats happen and people look for someone to blame.” (p.29)</li>
+              <li>“In light of the various restraints on mobility within Canada, Prime Minister Trudeau’s invocation of freedom of movement was striking, if not ironic. But perhaps more notable were the number of politicians… who chose to travel south for warm weather vacations in December 2020, only to face a chilly public reception upon their return. Many were demoted, fired, or forced to resign.” (p.30)</li>
+            </ul>
+            <div class="q-list">
+              <h3 class="h3">Preguntas</h3>
+              <ul>
+                <li>¿Qué significa el concepto de scapegoating y cómo podemos traducirlo al español? ¿Qué riesgos tiene en contextos de crisis sanitarias y migratorias?</li>
+                <li>¿De qué forma se manifestó el scapegoating hacia comunidades asiáticas durante la pandemia en Canadá y a nivel global?</li>
+                <li>¿Cómo interpretar la exhortación del gobierno canadiense a que sus ciudadanos regresaran al país, mientras al mismo tiempo se autorizaba la entrada de ciertos empresarios estadounidenses?</li>
+                <li>¿Qué contradicciones se observan entre el discurso oficial de Trudeau sobre la libertad de movimiento y las acciones de políticos que viajaron al extranjero durante las restricciones?</li>
+              </ul>
+            </div>
+            <h3 class="h3">Ideas / Posibles respuestas</h3>
+            <ul>
+              <li>Scapegoating puede traducirse como “chivo expiatorio”: atribuir culpas a un grupo vulnerable para desviar la responsabilidad de los actores de poder. En la pandemia, esto reforzó estereotipos raciales y nacionalistas.</li>
+              <li>Las comunidades asiáticas fueron estigmatizadas como portadoras del virus, lo que incrementó la discriminación y la violencia simbólica y física en Canadá y en muchos otros países.</li>
+              <li>Hubo una contradicción en el tratamiento diferenciado: se llamó a la “unidad nacional” para que ciudadanos regresaran, pero al mismo tiempo se facilitó la entrada a empresarios estadounidenses, revelando una jerarquía de intereses.</li>
+              <li>La invocación de Trudeau a la “libertad de movimiento” fue irónica, pues contrastaba con las restricciones generales. El escándalo de políticos que vacacionaron en el extranjero mostró la fragilidad de la legitimidad gubernamental y la importancia de la percepción pública.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Botón para mostrar/ocultar la tarjeta 4 -->
+        <button id="toggleCard4Btn" class="add" style="margin-bottom:1.5rem;">
+          Mostrar Tarjeta 4
+        </button>
+        <article class="card" id="t4" style="display:none;">
+          <div class="card-header">
+            <span class="pill">Tarjeta 4</span>
+            Estudiantes Internacionales · Notas pp. 31–32
+          </div>
+          <div class="card-body">
+            <h3 class="h3">Citas destacadas</h3>
+            <ul>
+              <li>“Historically, the education of international students was framed as a form of quasi-international development assistance… By the turn of the twenty-first century, this neo-colonial model of international students as aid recipients had evolved into a neo-liberal model of international students as revenue stream.” (p.31)</li>
+              <li>“Today, Canadian universities depend heavily on tuition fees charged to international students; international tuition across Canadian universities averages 4.5 times the fees charged to domestic students (Statistics Canada, 2020).” (p.31)</li>
+              <li>“Universities found themselves in a quandary: the physical presence of international students is economically essential… The economic imperative to enable international students to enter Canada thus collided with the bar on entry for ‘discretionary’ or ‘optional’ purposes.” (p.32)</li>
+              <li>“Even with a study permit in hand, actual admission remained subject to CBSA officers’ exercise of discretion at the port of entry.” (p.32)</li>
+            </ul>
+            <div class="q-list">
+              <h3 class="h3">Preguntas</h3>
+              <ul>
+                <li>¿Qué paradoja revela el papel de los estudiantes internacionales en Canadá durante la pandemia?</li>
+                <li>¿Cómo pasó la figura del estudiante internacional de ser vista como “beneficiario de ayuda” a convertirse en “fuente de ingresos”?</li>
+                <li>¿Por qué se consideraba “económicamente esencial” su presencia física, incluso cuando existía la alternativa de educación en línea?</li>
+                <li>¿Qué riesgos implica dejar en manos de oficiales fronterizos la decisión final sobre la entrada de estudiantes con permisos válidos?</li>
+              </ul>
+            </div>
+            <h3 class="h3">Ideas / Posibles respuestas</h3>
+            <ul>
+              <li>La paradoja está en que los estudiantes internacionales eran tratados como actores “opcionales” a nivel migratorio, pero “esenciales” para la economía universitaria.</li>
+              <li>La educación internacional pasó de un discurso de cooperación y desarrollo a un régimen neoliberal, donde los estudiantes del Sur Global sostienen financieramente a las universidades canadienses.</li>
+              <li>La insistencia en la presencia física revela cómo el valor económico pesaba más que el pedagógico: la matrícula internacional (4.5 veces la nacional) se volvió insustituible por la enseñanza en línea.</li>
+              <li>La discrecionalidad en la frontera muestra la precariedad jurídica de los estudiantes internacionales: aun con permisos, podían ser rechazados, lo que genera inseguridad y vulnerabilidad.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Botón para mostrar/ocultar la tarjeta 5 -->
+        <button id="toggleCard5Btn" class="add" style="margin-bottom:1.5rem;">
+          Mostrar Tarjeta 5
+        </button>
+        <article class="card" id="t5" style="display:none;">
+          <div class="card-header">
+            <span class="pill">Tarjeta 5</span>
+            Seasonal Agricultural Workers (SAWP) · Notas pp. 34
+          </div>
+          <div class="card-body">
+            <h3 class="h3">Citas destacadas</h3>
+            <ul>
+              <li>“Canada operates a Seasonal Agricultural Worker Program (SAWP) via bilateral agreements between the governments of Canada as destination state and Mexico and Jamaica as sending states.” (p.34)</li>
+              <li>“The Canadian government subsidises the agricultural employers’ labour costs by furnishing migrant workers who work in greenhouses, orchards, and other industrial agriculture operations under working conditions below what Canadians will accept.” (p.34)</li>
+              <li>“The workers can never transition to permanent residence and must perform the annual ritual of returning ‘home’ for some period of time in order to affirm their designation as merely temporary.” (p.34)</li>
+              <li>“Because of their precarious immigration status… they experience wage-theft, overwork, unhealthy and dangerous working conditions, overcrowded and inadequate shelter, poor sanitation, and restricted access to food, healthcare, and liberty.” (p.34)</li>
+            </ul>
+            <div class="q-list">
+              <h3 class="h3">Preguntas</h3>
+              <ul>
+                <li>¿Cómo funciona el SAWP y qué países participan en este esquema?</li>
+                <li>¿Por qué se considera que los trabajadores agrícolas migrantes ocupan condiciones laborales “debajo de lo que los canadienses aceptarían”?</li>
+                <li>¿Qué significa el “ritual anual de retorno” y cómo refuerza la precariedad de estos trabajadores?</li>
+                <li>¿Qué implicaciones sociales y éticas tiene que los trabajadores agrícolas temporales no puedan acceder a la residencia permanente?</li>
+                <li>¿Qué paralelismos podemos encontrar entre el caso canadiense y las condiciones de trabajadores agrícolas en México o Estados Unidos?</li>
+              </ul>
+            </div>
+            <h3 class="h3">Ideas / Posibles respuestas</h3>
+            <ul>
+              <li>El SAWP es un acuerdo bilateral que facilita la migración temporal desde México y Jamaica hacia Canadá, garantizando mano de obra barata para el sector agrícola.</li>
+              <li>Los empleadores canadienses se benefician de costos laborales reducidos al contratar a migrantes que aceptan condiciones que los trabajadores locales rechazarían.</li>
+              <li>El requisito de regresar cada año a sus países de origen reafirma su estatus como “temporales” y niega la posibilidad de integración o permanencia.</li>
+              <li>La imposibilidad de acceder a la residencia perpetúa la vulnerabilidad, consolidando una jerarquía laboral basada en origen nacional y estatus migratorio.</li>
+              <li>Las condiciones de sobreexplotación, hacinamiento y falta de derechos laborales reflejan patrones comunes en sistemas agrícolas globalizados, donde los migrantes son esenciales pero desechables.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Botón para mostrar/ocultar la tarjeta 6 -->
+        <button id="toggleCard6Btn" class="add" style="margin-bottom:1.5rem;">
+          Mostrar Tarjeta 6
+        </button>
+        <article class="card" id="t6" style="display:none;">
+          <div class="card-header">
+            <span class="pill">Tarjeta 6</span>
+            Seasonal Agricultural Workers – Exclusión estructural y reconocimiento ambiguo · Notas pp. 35–36
+          </div>
+          <div class="card-body">
+            <h3 class="h3">Citas destacadas</h3>
+            <ul>
+              <li>“Although frequently denigrated as ‘unskilled’ and thus undeserving of permanent residence, employers now emphasised the skill, experience, and efficiency of seasonal agricultural workers.” (p.35)</li>
+              <li>“And so, to sustain the food supply in Canada, the entry of seasonal agricultural workers was facilitated as an exception because their admission was economically essential to Canada.” (p.35)</li>
+              <li>“But upgrading the work to essential did not make the workers essential. Rather, it exposed the extent to which migrant agricultural labour is essential because the workers themselves are dispensable.” (p.35)</li>
+              <li>“This is not a paradox: slave labour is essential to a slave economy but, and because, enslaved people have no intrinsic worth in that economy.” (p.35)</li>
+              <li>“Migrant worker organisations drew attention to the essential services these workers provide to a Canadian economy in crisis, and the heightened risk of infection, illness, and death they faced because of the nature of the work they perform.” (p.36)</li>
+            </ul>
+            <div class="q-list">
+              <h3 class="h3">Preguntas</h3>
+              <ul>
+                <li>¿Cómo se genera una exclusión estructural mediante el esquema de renovación continua de permisos temporales?</li>
+                <li>¿Qué significa que antes fueran considerados “unskilled” y, durante la pandemia, se les reconociera como trabajadores con “skills, experience and efficiency”?</li>
+                <li>¿Qué nos revela la afirmación de que “hacer el trabajo esencial no hace esencial al trabajador”?</li>
+                <li>¿Cómo se relaciona esta lógica con la noción de trabajo esclavo en economías dependientes?</li>
+                <li>¿Qué papel tuvieron las organizaciones de trabajadores migrantes al visibilizar los riesgos sanitarios y las omisiones del gobierno y empleadores?</li>
+              </ul>
+            </div>
+            <h3 class="h3">Ideas / Posibles respuestas</h3>
+            <ul>
+              <li>El sistema de renovación perpetua de permisos temporales crea una exclusión estructural: los trabajadores nunca acceden a residencia permanente, aunque su presencia sea continua y necesaria.</li>
+              <li>La narrativa cambió de “unskilled” a valorar sus “habilidades y eficiencia”, pero sin modificar su estatus precario, lo que muestra un reconocimiento instrumental, no de derechos.</li>
+              <li>La frase sobre lo esencial del trabajo pero no del trabajador evidencia que lo que se valora es la función económica, no la dignidad del sujeto.</li>
+              <li>Comparar con la lógica del trabajo esclavo permite ver cómo se explota el carácter indispensable del trabajo mientras se niega valor intrínseco a las personas.</li>
+              <li>Las organizaciones de migrantes denunciaron la falta de medidas sanitarias, el hacinamiento y la explotación laboral, revelando cómo la vulnerabilidad estructural se agravó con la pandemia.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Botón para mostrar/ocultar la tarjeta 7 -->
+        <button id="toggleCard7Btn" class="add" style="margin-bottom:1.5rem;">
+          Mostrar Tarjeta 7
+        </button>
+        <article class="card" id="t7" style="display:none;">
+          <div class="card-header">
+            <span class="pill">Tarjeta 7</span>
+            Inmigración permanente: ¿qué revelan los datos de 2025 frente a la coyuntura pandémica? · Notas pp. 39–40
+          </div>
+          <div class="card-body">
+            <h3 class="h3">Citas destacadas (Macklin)</h3>
+            <ul>
+              <li>“The pessimistic view is that these initiatives will become another example of short-term, ad-hoc policies … [by Dec 2020] there were over 80,000 refugee claimants in Canada and over a million people on temporary work permits.”</li>
+              <li>“It is too early to predict or theorise the future of mobility as free (versus permitted) movement in an era of surveillance, internal borders, and lockdowns.”</li>
+              <li>“Each state has its own set of factors … whose entry and what kind of labour was legally, economically, and politically essential during the pandemic.”</li>
+            </ul>
+            <h3 class="h3">Datos actualizados (2025)</h3>
+            <ul>
+              <li>En el primer trimestre de 2025, Canadá admitió 104,256 inmigrantes permanentes, cifra récord para ese período.</li>
+              <li>El Plan de Niveles de Inmigración 2025-2027 proyecta una reducción gradual de admisiones permanentes: 395,000 en 2025, 380,000 en 2026, y 365,000 en 2027.</li>
+              <li>En 2024, se habían admitido unos 483,640 residentes permanentes, el número más alto registrado.</li>
+              <li>A inicios de 2025 también se reportó una baja notable de residentes temporales (estudiantes, trabajadores), en una medida sin precedentes desde 2020.</li>
+            </ul>
+            <h3 class="h3">Comparativa México – EE.UU.</h3>
+            <ul>
+              <li>En EE.UU., la política migratoria pandémica incluyó restricciones Covid-19 (proclamaciones de salud) y priorización de categorías laborales específicas, aunque sus niveles de residencia permanente no alcanzaron los aumentos observados en Canadá.</li>
+              <li>México, por su parte, no implementó un programa nacional equivalente de ampliación de residencia permanente; su política migratoria se enfocó más en temporaneidad (refugiados, visitantes, trabajadores agrícolas) y menos en construir rutas estructurales hacia la residencia. Esto contrastó con Canadá, donde la pandemia impulsó —al menos temporalmente— una flexibilización migratoria más amplia.</li>
+            </ul>
+            <h3 class="h3">Reflexión sobre Migración y Desarrollo</h3>
+            <ul>
+              <li>El caso canadiense muestra cómo una crisis puede acelerar políticas migratorias expansivas, alineadas con necesidades económicas inmediatas y una visión de desarrollo basada en movilidad.</li>
+              <li>Sin embargo, la posterior reversión —reducción de admisiones y control de residentes temporales— evidencia la fragilidad de estas medidas ante presiones internas (vivienda, infraestructura, opinión pública).</li>
+              <li>La migración puede ser una vía poderosa de desarrollo si se integra con planificación urbana, social y laboral, pero sin políticas sostenibles, corre el riesgo de ser reactiva y limitada.</li>
+            </ul>
+            <h3 class="h3">Artículos recientes</h3>
+            <ul>
+              <li><a href="https://www.reuters.com/world/americas/canada-cut-immigration-numbers-2024-10-23/?utm_source=chatgpt.com" target="_blank" rel="noopener">Canada to cut immigration numbers, government source says</a></li>
+              <li><a href="https://www.reuters.com/world/americas/canada-cut-immigration-ease-housing-social-services-strain-2024-10-24/?utm_source=chatgpt.com" target="_blank" rel="noopener">Canada's immigration cuts could hurt labor pool, industry groups say</a></li>
+              <li><a href="https://www.news.com.au/finance/economy/canada-shows-australia-how-to-solve-rental-crisis-clear-lessons-here/news-story/dc19bbb2f19ca8c210296e1717a0af43?utm_source=chatgpt.com" target="_blank" rel="noopener">Canada gives Aus a 'clear lesson' on housing</a></li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Sección de Videos recomendados -->
+        <section style="margin-top:2.5rem;">
+          <h2 style="margin-bottom:1.2rem;">Videos recomendados sobre migración y Canadá</h2>
+          <div style="display:flex;flex-wrap:wrap;gap:1.2rem;">
+            <div style="width:280px;">
+              <iframe width="280" height="158" src="https://www.youtube.com/embed/25bwiSikRsI?si=lkvCFrcXXb5AbVA5" title="What does it mean to be a refugee" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
+              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">What does it mean to be a refugee?</div>
+            </div>
+            <div style="width:280px;">
+              <iframe width="280" height="158" src="https://www.youtube.com/embed/goS_2Z98c7g?si=g5JgtkcMFLEQ4F07" title="AI Border Control" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
+              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">AI Border Control</div>
+            </div>
+            <div style="width:280px;">
+              <iframe width="280" height="158" src="https://www.youtube.com/embed/2QtNokohvwY" title="EE. UU. vs. Canadá: el divorcio | ARTE.tv Documentary" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
+              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">EE. UU. vs. Canadá: el divorcio | ARTE.tv Documentary</div>
+            </div>
+
+            <div style="width:280px;">
+              <iframe width="280" height="158" src="https://www.youtube.com/embed/lapAm6v5Dgo" title="Skilled newcomers are leaving Canada in record numbers. Here’s why | About That" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
+              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">Skilled newcomers are leaving Canada in record numbers. Here’s why | About That</div>
+            </div>
+
+            <div style="width:280px;">
+              <iframe width="280" height="158" src="https://www.youtube.com/embed/ONjCMzB_FPw" title="This Immigrant Left the U.S. To Seek Asylum In Canada. Here’s Why." frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
+              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">This Immigrant Left the U.S. To Seek Asylum In Canada. Here’s Why.</div>
+            </div>
+            <div style="width:280px;">
+              <iframe width="280" height="158" src="https://www.youtube.com/embed/MHOQxiZ9Eoo" title="Why the closing of the US-Canada border plunged Canadian tourism into crisis" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
+              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">Why the closing of the US-Canada border plunged Canadian tourism into crisis</div>
+            </div>
+            <div style="width:280px;">
+              <iframe width="280" height="158" src="https://www.youtube.com/embed/kRhZdmtw3Wg" title="Canada’s Secret Weapon: America’s Broken Immigration System" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
+              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">Canada’s Secret Weapon: America’s Broken Immigration System</div>
+            </div>
+            <div style="width:280px;">
+              <iframe width="280" height="158" src="https://www.youtube.com/embed/U0qtDjxon7c" title="Why Trudeau is Quietly U-Turning on Immigration" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
+              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">Why Trudeau is Quietly U-Turning on Immigration</div>
+            </div>
+
+            <div style="width:280px;">
+              <iframe width="280" height="158" src="https://www.youtube.com/embed/txyjmNXcWiU" title="Why is anti-immigration sentiment on the rise in Canada? | The National" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
+              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">Why is anti-immigration sentiment on the rise in Canada? | The National</div>
+            </div>
+            <div style="width:280px;">
+              <iframe width="280" height="158" src="https://www.youtube.com/embed/C6nOWE8betQ" title="How The U.S. Lost Thousands Of High-Skilled Workers To Canada" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
+              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">How The U.S. Lost Thousands Of High-Skilled Workers To Canada</div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <aside class="col-4">
+        <div class="panel">
+          <span class="badge">Guía de lectura</span>
+          <h3 style="margin:.5rem 0 0">Migración y Pandemia</h3>
+          <p class="meta"><strong>Referencia:</strong> Macklin, A. (2022). (In)Essential Bordering: Canada, COVID, and Mobility. En A. Triandafyllidou (ed.), <em>Migration and Pandemics</em> (IMISCOE Research Series). Springer.</p>
+          <p class="meta"><strong>Objetivo de clase:</strong> comprender cómo la pandemia reconfiguró las jerarquías de admisibilidad y el control de movilidad dentro y fuera del Estado, y discutir la noción de “esencial”.</p>
+          <p class="meta" style="margin-top:1.5rem;">
+            <a href="glosario.html" class="add" style="display:inline-block;margin-top:.5rem;">📖 Glosario de conceptos</a>
+          </p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="brand"><span class="stripe"></span>
+        <div>Dr. Jorge Cardiel Herrera, Facultad de Contaduría y Administración, 2025, UNAM.</div>
+      </div>
+      <div>Colores inspirados en <em>Migration and Pandemics</em> (IMISCOE · Springer).</div>
+    </div>
+  </footer>
+
+  <script>
+    // Mostrar/ocultar la tarjeta al hacer click
+    const btn = document.getElementById('toggleCardBtn');
+    const card = document.getElementById('t1');
+    let visible = false;
+    btn.addEventListener('click', () => {
+      visible = !visible;
+      card.style.display = visible ? 'block' : 'none';
+      btn.textContent = visible ? 'Ocultar Tarjeta 1' : 'Mostrar Tarjeta 1';
+    });
+
+    // Mostrar/ocultar la tarjeta 2 al hacer click
+    const btn2 = document.getElementById('toggleCard2Btn');
+    const card2 = document.getElementById('t2');
+    let visible2 = false;
+    btn2.addEventListener('click', () => {
+      visible2 = !visible2;
+      card2.style.display = visible2 ? 'block' : 'none';
+      btn2.textContent = visible2 ? 'Ocultar Tarjeta 2' : 'Mostrar Tarjeta 2';
+    });
+
+    // Mostrar/ocultar la tarjeta 3 al hacer click
+    const btn3 = document.getElementById('toggleCard3Btn');
+    const card3 = document.getElementById('t3');
+    let visible3 = false;
+    btn3.addEventListener('click', () => {
+      visible3 = !visible3;
+      card3.style.display = visible3 ? 'block' : 'none';
+      btn3.textContent = visible3 ? 'Ocultar Tarjeta 3' : 'Mostrar Tarjeta 3';
+    });
+
+    // Mostrar/ocultar la tarjeta 4 al hacer click
+    const btn4 = document.getElementById('toggleCard4Btn');
+    const card4 = document.getElementById('t4');
+    let visible4 = false;
+    btn4.addEventListener('click', () => {
+      visible4 = !visible4;
+      card4.style.display = visible4 ? 'block' : 'none';
+      btn4.textContent = visible4 ? 'Ocultar Tarjeta 4' : 'Mostrar Tarjeta 4';
+    });
+
+    // Mostrar/ocultar la tarjeta 5 al hacer click
+    const btn5 = document.getElementById('toggleCard5Btn');
+    const card5 = document.getElementById('t5');
+    let visible5 = false;
+    btn5.addEventListener('click', () => {
+      visible5 = !visible5;
+      card5.style.display = visible5 ? 'block' : 'none';
+      btn5.textContent = visible5 ? 'Ocultar Tarjeta 5' : 'Mostrar Tarjeta 5';
+    });
+
+    // Mostrar/ocultar la tarjeta 6 al hacer click
+    const btn6 = document.getElementById('toggleCard6Btn');
+    const card6 = document.getElementById('t6');
+    let visible6 = false;
+    btn6.addEventListener('click', () => {
+      visible6 = !visible6;
+      card6.style.display = visible6 ? 'block' : 'none';
+      btn6.textContent = visible6 ? 'Ocultar Tarjeta 6' : 'Mostrar Tarjeta 6';
+    });
+
+    // Mostrar/ocultar la tarjeta 7 al hacer click
+    const btn7 = document.getElementById('toggleCard7Btn');
+    const card7 = document.getElementById('t7');
+    let visible7 = false;
+    btn7.addEventListener('click', () => {
+      visible7 = !visible7;
+      card7.style.display = visible7 ? 'block' : 'none';
+      btn7.textContent = visible7 ? 'Ocultar Tarjeta 7' : 'Mostrar Tarjeta 7';
+    });
+
+    // Información de CBSA para el popup
+    const cbsaInfo = `
+      <strong>CBSA</strong> es la <strong>Canada Border Services Agency</strong> (Agencia de Servicios Fronterizos de Canadá).<br><br>
+      Es el organismo federal encargado de:
+      <ul style="text-align:left; font-size:1.15rem; margin-top:1rem;">
+        <li>Controlar la entrada y salida de personas y bienes en Canadá.</li>
+        <li>Aplicar leyes de inmigración y aduanas, incluyendo inspecciones en aeropuertos, puertos y fronteras terrestres.</li>
+        <li>Ejecutar detenciones y deportaciones en casos de incumplimiento de la ley migratoria.</li>
+        <li>Recaudar aranceles y tarifas aduaneras.</li>
+        <li>Proteger la seguridad nacional, colaborando con otras agencias en temas de contrabando, terrorismo y crimen organizado.</li>
+      </ul>
+      <br>
+      En <em>Macklin, 2020</em> se menciona que, aun teniendo un <em>study permit</em> válido, la admisión final de los estudiantes internacionales quedaba a discreción de los oficiales del CBSA en el punto de entrada. Es decir, eran ellos quienes decidían en la práctica si el estudiante podía entrar o no.
+    `;
+
+    // Función para abrir el popup de CBSA
+    function showCBSAPopup() {
+      const popup = document.createElement('div');
+      popup.id = 'cbsa-popup';
+      popup.style.position = 'fixed';
+      popup.style.top = '50%';
+      popup.style.left = '50%';
+      popup.style.transform = 'translate(-50%, -50%)';
+      popup.style.background = 'rgba(255,247,236,0.98)';
+      popup.style.color = 'var(--ink)';
+      popup.style.border = '2px solid var(--teal-dark)';
+      popup.style.borderRadius = '18px';
+      popup.style.boxShadow = '0 8px 32px rgba(11,138,143,.18)';
+      popup.style.padding = '2.2rem 2rem 1.5rem 2rem';
+      popup.style.zIndex = '9999';
+      popup.style.maxWidth = '90vw';
+      popup.style.width = '480px';
+      popup.style.fontSize = '1.15rem';
+      popup.style.maxHeight = '80vh';
+      popup.style.overflowY = 'auto';
+      popup.innerHTML = `
+        <div style="font-size:1.35rem; font-weight:700; margin-bottom:.7rem; color:var(--teal-dark);">¿Qué es el CBSA?</div>
+        ${cbsaInfo}
+        <div style="text-align:right; margin-top:1.5rem;">
+          <button id="closeCBSABtn" style="background:var(--sun);color:var(--ink);border:none;border-radius:999px;padding:.5rem 1.2rem;font-size:1rem;font-weight:700;cursor:pointer;">Cerrar</button>
+        </div>
+      `;
+      document.body.appendChild(popup);
+
+      function resizePopup() {
+        const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+        popup.style.width = vw < 520 ? '96vw' : '480px';
+        popup.style.maxHeight = vw < 520 ? '90vh' : '80vh';
+      }
+      resizePopup();
+      window.addEventListener('resize', resizePopup);
+
+      document.getElementById('closeCBSABtn').onclick = () => {
+        window.removeEventListener('resize', resizePopup);
+        popup.remove();
+      };
+    }
+
+    // Función para insertar el link en cada mención de CBSA
+    function linkifyCBSA(text) {
+      return text.replace(/CBSA/g, `<a href="#" onclick="showCBSAPopup();return false;" style="color:var(--coral);text-decoration:underline;font-weight:700;">CBSA</a>`);
+    }
+
+    // Aplica linkifyCBSA a los textos de las tarjetas (ejemplo para la tarjeta 4)
+    document.getElementById('t4').innerHTML = linkifyCBSA(document.getElementById('t4').innerHTML);
+
+    // Exponer la función para el link
+    window.showCBSAPopup = showCBSAPopup;
+  </script>
+</body>
+</html>

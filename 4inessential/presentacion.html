@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Modo Presentación · (In)Essential Bordering</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    :root{
+      --teal:#0b8a8f;
+      --teal-dark:#086b6f;
+      --sun:#ffb64d;
+      --coral:#ff4b4b;
+      --cream:#fff7ec;
+      --ink:#103338;
+    }
+    body {
+      background: var(--teal);
+      color: #fff;
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .presentation-container {
+      width: 100vw;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2.5vh;
+      margin-bottom: 0;
+    }
+    .card-flip {
+      width: 100%;
+      max-width: 900px;
+      min-width: 0;
+      min-height: 220px;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .flip-inner {
+      width: 100%;
+      min-height: 220px;
+      position: relative;
+      transition: transform 0.7s cubic-bezier(.4,2,.3,1);
+      transform-style: preserve-3d;
+    }
+    .slide-face {
+      width: 100%;
+      max-width: 900px;
+      box-sizing: border-box;
+      background: rgba(255,247,236,0.97);
+      color: var(--ink);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(11,138,143,.18);
+      padding: 2rem 1.2rem;
+      font-size: 2.2rem;
+      text-align: center;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-y: auto;
+      word-break: break-word;
+    }
+    .slide-face.active {
+      display: flex;
+      animation: fadeIn .4s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .slide-face h1, .slide-face h2 {
+      color: var(--teal-dark);
+      margin-bottom: 1.2rem;
+      font-size: 2.1rem;
+      font-weight: 900;
+      letter-spacing: .03em;
+    }
+    .controls {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2rem;
+      margin-top: 1.2rem;
+      position: static;
+      z-index: auto;
+    }
+    .btn {
+      background: var(--sun);
+      color: var(--ink);
+      border: none;
+      border-radius: 999px;
+      padding: 1rem 2.2rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: background .2s;
+      margin-bottom: .5rem;
+    }
+    .btn:disabled {
+      background: #ffe6b3;
+      color: #aaa;
+      cursor: not-allowed;
+    }
+    @media (max-width: 950px) {
+      .card-flip, .slide-face {
+        max-width: 98vw;
+      }
+    }
+    @media (max-width: 600px) {
+      .card-flip {
+        max-width: 100vw;
+        min-height: 160px;
+      }
+      .slide-face {
+        font-size: 1.15rem;
+        padding: 1rem .5rem;
+        min-height: 160px;
+      }
+      .slide-face h1, .slide-face h2 {
+        font-size: 1.2rem;
+      }
+      .controls {
+        flex-direction: column;
+        gap: .5rem;
+        margin-bottom: 1.2rem;
+        margin-top: 1rem;
+      }
+    }
+    @media (max-width: 400px) {
+      .slide-face {
+        font-size: 1rem;
+        padding: .5rem .2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="presentation-container">
+    <div class="card-flip">
+      <div class="flip-inner" id="flipInner">
+        <div class="slide-face front active" id="frontFace"></div>
+        <div class="slide-face back" id="backFace"></div>
+      </div>
+    </div>
+    <div class="controls">
+      <button class="btn" id="prevBtn">Anterior</button>
+      <button class="btn" id="flipBtn">Ver idea clave</button>
+      <button class="btn" id="nextBtn">Siguiente</button>
+      <button class="btn" id="randomBtn" title="Pregunta aleatoria" style="font-size:1.4rem;display:flex;align-items:center;gap:.5rem;">
+        <span aria-hidden="true">🎲</span> Aleatoria
+      </button>
+      <a href="index.html" class="btn" id="backBtn" style="text-decoration:none;">Regresar a notas de lectura</a>
+    </div>
+  </div>
+<script>
+  // Información de Walzer para el popup
+  const walzerInfo = `
+    <strong>Michael Walzer (n. 1935)</strong> es un filósofo político estadounidense, profesor emérito en el Institute for Advanced Study (Princeton, EE. UU.), conocido por sus trabajos sobre justicia, guerra, ética y ciudadanía.<br><br>
+    <u>Algunos puntos clave sobre él:</u>
+    <ul style="text-align:left; font-size:1.15rem; margin-top:1rem;">
+      <li><strong>Obra más influyente:</strong> <em>Spheres of Justice</em> (1983), donde desarrolla la idea de que la justicia no es universal ni uniforme, sino que debe entenderse en “esferas” diferenciadas (economía, política, comunidad, etc.), cada una con sus propios criterios de distribución.</li>
+      <li><strong>Teoría de la guerra justa:</strong> En <em>Just and Unjust Wars</em> (1977), ofrece una defensa moderna del concepto de guerra justa, analizando cómo deben ser evaluadas las guerras y la conducta de los combatientes.</li>
+      <li><strong>Comunitarismo:</strong> Es una de las figuras centrales del comunitarismo político, corriente que resalta la importancia de la pertenencia comunitaria y de los valores compartidos frente a visiones más individualistas de la política.</li>
+      <li><strong>Sobre fronteras y movilidad:</strong> Walzer argumenta que la libre movilidad dentro de un Estado (ciudadanos circulando sin restricciones) depende de que existan fronteras nacionales relativamente cerradas. Si estas se abrieran por completo, comunidades más pequeñas tenderían a erigir sus propias barreras internas —lo que él llamó un mundo de “mil pequeños fortines” (<em>a thousand petty fortresses</em>).</li>
+    </ul>
+  `;
+
+  // Función para abrir el popup
+  function showWalzerPopup() {
+    const popup = document.createElement('div');
+    popup.id = 'walzer-popup';
+    popup.style.position = 'fixed';
+    popup.style.top = '50%';
+    popup.style.left = '50%';
+    popup.style.transform = 'translate(-50%, -50%)';
+    popup.style.background = 'rgba(255,247,236,0.98)';
+    popup.style.color = 'var(--ink)';
+    popup.style.border = '2px solid var(--teal-dark)';
+    popup.style.borderRadius = '18px';
+    popup.style.boxShadow = '0 8px 32px rgba(11,138,143,.18)';
+    popup.style.padding = '2.2rem 2rem 1.5rem 2rem';
+    popup.style.zIndex = '9999';
+    popup.style.maxWidth = '90vw';
+    popup.style.width = '480px';
+    popup.style.fontSize = '1.15rem';
+    popup.style.maxHeight = '80vh';
+    popup.style.overflowY = 'auto';
+    popup.innerHTML = `
+      <div style="font-size:1.35rem; font-weight:700; margin-bottom:.7rem; color:var(--teal-dark);">¿Quién es Walzer?</div>
+      ${walzerInfo}
+      <div style="text-align:right; margin-top:1.5rem;">
+        <button id="closeWalzerBtn" style="background:var(--sun);color:var(--ink);border:none;border-radius:999px;padding:.5rem 1.2rem;font-size:1rem;font-weight:700;cursor:pointer;">Cerrar</button>
+      </div>
+    `;
+    document.body.appendChild(popup);
+
+    // Ajustar tamaño si la ventana es pequeña
+    function resizePopup() {
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      popup.style.width = vw < 520 ? '96vw' : '480px';
+      popup.style.maxHeight = vw < 520 ? '90vh' : '80vh';
+    }
+    resizePopup();
+    window.addEventListener('resize', resizePopup);
+
+    document.getElementById('closeWalzerBtn').onclick = () => {
+      window.removeEventListener('resize', resizePopup);
+      popup.remove();
+    };
+  }
+
+  // Información de CBSA para el popup
+  const cbsaInfo = `
+    <strong>CBSA</strong> es la <strong>Canada Border Services Agency</strong> (Agencia de Servicios Fronterizos de Canadá).<br><br>
+    Es el organismo federal encargado de:
+    <ul style="text-align:left; font-size:1.15rem; margin-top:1rem;">
+      <li>Controlar la entrada y salida de personas y bienes en Canadá.</li>
+      <li>Aplicar leyes de inmigración y aduanas, incluyendo inspecciones en aeropuertos, puertos y fronteras terrestres.</li>
+      <li>Ejecutar detenciones y deportaciones en casos de incumplimiento de la ley migratoria.</li>
+      <li>Recaudar aranceles y tarifas aduaneras.</li>
+      <li>Proteger la seguridad nacional, colaborando con otras agencias en temas de contrabando, terrorismo y crimen organizado.</li>
+    </ul>
+    <br>
+    En <em>Macklin, 2020</em> se menciona que, aun teniendo un <em>study permit</em> válido, la admisión final de los estudiantes internacionales quedaba a discreción de los oficiales del CBSA en el punto de entrada. Es decir, eran ellos quienes decidían en la práctica si el estudiante podía entrar o no.
+  `;
+
+  // Función para abrir el popup de CBSA
+  function showCBSAPopup() {
+    const popup = document.createElement('div');
+    popup.id = 'cbsa-popup';
+    popup.style.position = 'fixed';
+    popup.style.top = '50%';
+    popup.style.left = '50%';
+    popup.style.transform = 'translate(-50%, -50%)';
+    popup.style.background = 'rgba(255,247,236,0.98)';
+    popup.style.color = 'var(--ink)';
+    popup.style.border = '2px solid var(--teal-dark)';
+    popup.style.borderRadius = '18px';
+    popup.style.boxShadow = '0 8px 32px rgba(11,138,143,.18)';
+    popup.style.padding = '2.2rem 2rem 1.5rem 2rem';
+    popup.style.zIndex = '9999';
+    popup.style.maxWidth = '90vw';
+    popup.style.width = '480px';
+    popup.style.fontSize = '1.15rem';
+    popup.style.maxHeight = '80vh';
+    popup.style.overflowY = 'auto';
+    popup.innerHTML = `
+      <div style="font-size:1.35rem; font-weight:700; margin-bottom:.7rem; color:var(--teal-dark);">¿Qué es el CBSA?</div>
+      ${cbsaInfo}
+      <div style="text-align:right; margin-top:1.5rem;">
+        <button id="closeCBSABtn" style="background:var(--sun);color:var(--ink);border:none;border-radius:999px;padding:.5rem 1.2rem;font-size:1rem;font-weight:700;cursor:pointer;">Cerrar</button>
+      </div>
+    `;
+    document.body.appendChild(popup);
+
+    function resizePopup() {
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      popup.style.width = vw < 520 ? '96vw' : '480px';
+      popup.style.maxHeight = vw < 520 ? '90vh' : '80vh';
+    }
+    resizePopup();
+    window.addEventListener('resize', resizePopup);
+
+    document.getElementById('closeCBSABtn').onclick = () => {
+      window.removeEventListener('resize', resizePopup);
+      popup.remove();
+    };
+  }
+
+  // Función para insertar el link en cada mención de Walzer
+  function linkifyWalzer(text) {
+    return text.replace(/Walzer/g, `<a href="#" onclick="showWalzerPopup();return false;" style="color:var(--coral);text-decoration:underline;font-weight:700;">Walzer</a>`);
+  }
+
+  // Función para insertar el link en cada mención de CBSA
+  function linkifyCBSA(text) {
+    return text.replace(/CBSA/g, `<a href="#" onclick="showCBSAPopup();return false;" style="color:var(--coral);text-decoration:underline;font-weight:700;">CBSA</a>`);
+  }
+
+  // Preguntas e ideas clave
+  const preguntas = [
+    // Tarjeta 1 preguntas
+    linkifyWalzer("Walzer sostiene que la libre movilidad interna se sostiene en la presunción de cierre en las fronteras nacionales. Durante la pandemia, sin embargo, el Estado canadiense extendió su soberanía al control de todos los movimientos —desde el cruce internacional hasta los desplazamientos cotidianos—, generando una situación de stasis casi total. ¿En este contexto, la experiencia canadiense confirma o desmiente la hipótesis de Walzer? ¿Qué nos revela sobre la capacidad del Estado de redefinir la movilidad como un privilegio permitido más que como un derecho?"),
+    "¿Qué actores decidieron qué era “esencial” en Canadá (gobierno federal, provincias, sectores económicos, tribunales)? ¿Con qué criterios explícitos o implícitos?",
+    "¿Cómo se reconfiguró la jerarquía de admisibilidad durante la pandemia? Contrasta “pasaporte privilegiado” vs. “entrada por necesidad”.",
+    "Etiqueta y estigma: ¿qué efectos tuvieron narrativas como “virus chino/Wuhan”? Identifica consecuencias raciales y políticas.",
+    "Comparativo México-Canadá: en México también se distinguió entre actividades esenciales y no esenciales. ¿Quién definió esas listas a nivel federal/estatal/municipal? ¿Qué negocios o trabajadores quedaron excluidos/invisibilizados?",
+    "¿Qué implica conceptualizar la movilidad como permitida y no como derecho a la libre circulación? ¿Qué riesgos permanecen post-pandemia?",
+    // Tarjeta 2 preguntas
+    "¿Por qué el gobierno canadiense utilizó la Quarantine Act en lugar de leyes antiterroristas? ¿Qué implicaciones tiene esto en términos de derechos y control?",
+    "¿Cómo refuerza la categoría de “esencial” estereotipos sobre quién representa peligro y quién es necesario?",
+    "¿Qué actividades quedaron fuera como “opcionales” o “discrecionales”? ¿Qué revela esto sobre el modelo económico y social canadiense?",
+    "¿Cómo se relaciona la lista de viajes discrecionales con desigualdades de clase y acceso?",
+    // Nuevas preguntas agregadas
+    "¿Qué significa el concepto de scapegoating y cómo podemos traducirlo al español? ¿Qué riesgos tiene en contextos de crisis sanitarias y migratorias?",
+    "¿De qué forma se manifestó el scapegoating hacia comunidades asiáticas durante la pandemia en Canadá y a nivel global?",
+    "¿Cómo interpretar la exhortación del gobierno canadiense a que sus ciudadanos regresaran al país, mientras al mismo tiempo se autorizaba la entrada de ciertos empresarios estadounidenses?",
+    "¿Qué contradicciones se observan entre el discurso oficial de Trudeau sobre la libertad de movimiento y las acciones de políticos que viajaron al extranjero durante las restricciones?",
+    // Tarjeta 4 preguntas
+    "¿Qué paradoja revela el papel de los estudiantes internacionales en Canadá durante la pandemia?",
+    "¿Cómo pasó la figura del estudiante internacional de ser vista como “beneficiario de ayuda” a convertirse en “fuente de ingresos”?",
+    "¿Por qué se consideraba “económicamente esencial” su presencia física, incluso cuando existía la alternativa de educación en línea?",
+    "¿Qué riesgos implica dejar en manos de oficiales fronterizos la decisión final sobre la entrada de estudiantes con permisos válidos?",
+    // Tarjeta 5 preguntas
+    "¿Cómo funciona el SAWP y qué países participan en este esquema?",
+    "¿Por qué se considera que los trabajadores agrícolas migrantes ocupan condiciones laborales “debajo de lo que los canadienses aceptarían”?",
+    "¿Qué significa el “ritual anual de retorno” y cómo refuerza la precariedad de estos trabajadores?",
+    "¿Qué implicaciones sociales y éticas tiene que los trabajadores agrícolas temporales no puedan acceder a la residencia permanente?",
+    "¿Qué paralelismos podemos encontrar entre el caso canadiense y las condiciones de trabajadores agrícolas en México o Estados Unidos?",
+    // Tarjeta 6 preguntas
+    "¿Cómo se genera una exclusión estructural mediante el esquema de renovación continua de permisos temporales?",
+    "¿Qué significa que antes fueran considerados “unskilled” y, durante la pandemia, se les reconociera como trabajadores con “skills, experience and efficiency”?",
+    "¿Qué nos revela la afirmación de que “hacer el trabajo esencial no hace esencial al trabajador”?",
+    "¿Cómo se relaciona esta lógica con la noción de trabajo esclavo en economías dependientes?",
+    "¿Qué papel tuvieron las organizaciones de trabajadores migrantes al visibilizar los riesgos sanitarios y las omisiones del gobierno y empleadores?",
+    // Tarjeta 7 preguntas (nuevas preguntas agregadas)
+    "¿Qué tendencias muestran los datos de inmigración permanente en Canadá en 2025 frente a la coyuntura pandémica?",
+    "¿Qué diferencias y similitudes existen entre las políticas migratorias de Canadá, EE.UU. y México durante y después de la pandemia?",
+    "¿Qué riesgos y oportunidades implica la flexibilización temporal de la residencia permanente en contextos de crisis?",
+    "¿Cómo puede la migración contribuir al desarrollo?"
+  ];
+
+  const ideas = [
+    // Tarjeta 1 ideas
+    linkifyWalzer("La experiencia canadiense confirma parcialmente la tesis de Walzer: al cerrarse fronteras nacionales, emergieron múltiples barreras internas (provincias, comunidades indígenas, municipios). Pero también la desmiente, porque el cierre interno no fue una reacción a fronteras abiertas, sino parte de una soberanía extendida que reguló toda movilidad. Esto muestra la capacidad del Estado para redefinir la circulación como privilegio otorgado, no como derecho garantizado."),
+    "Las decisiones sobre lo esencial se tomaron en varios niveles: el gobierno federal fijó reglas generales, las provincias adaptaron medidas según contextos locales, y sectores económicos presionaron para clasificar actividades como esenciales (p. ej. agricultura, transporte, salud). Los criterios mezclaron urgencia económica, necesidades básicas y legitimidad política, más que un principio único coherente.",
+    "Antes del COVID, la jerarquía favorecía a poseedores de pasaportes del Norte Global. Durante la pandemia, esa lógica se desplazó por la noción de necesidad inmediata: trabajadores agrícolas temporales, personal médico o transportistas podían ingresar aunque fueran del Sur Global. El pasaporte privilegiado perdió fuerza frente a la utilidad percibida en el momento.",
+    "Narrativas como “virus chino” o “Wuhan virus” reforzaron estigmas raciales, asociando enfermedad con nacionalidad o etnia. En Canadá y otros países, esto alimentó sinofobia, violencia verbal y física contra comunidades asiáticas, y legitimó políticas de exclusión bajo la lógica de proteger a la nación del ‘otro peligroso’.",
+    "En México, las listas de lo esencial se definieron a nivel federal, pero con variaciones estatales y municipales. Comercios como papelerías, gimnasios o pequeños negocios de barrio quedaron fuera, mientras sectores industriales con peso económico fueron clasificados como esenciales. Esto visibiliza cómo criterios económicos y de poder político pesaron más que la equidad social.",
+    "Considerar la movilidad como un permiso socava la idea de ciudadanía y de derechos universales de circulación. El riesgo post-pandemia es que el Estado conserve o reactive con facilidad mecanismos de control, legitimando nuevas formas de vigilancia y restricción bajo argumentos de seguridad o salud pública.",
+    // Tarjeta 2 ideas / posibles respuestas
+    "El uso de la Quarantine Act buscó minimizar protecciones jurídicas y maximizar capacidad de control, replicando patrones post-11S pero bajo una narrativa sanitaria.",
+    "La etiqueta de “esencial” no solo organizó el acceso, también reforzó prejuicios: lo extranjero como amenaza y lo útil económicamente como legítimo.",
+    "Al considerar turismo o recreación como “opcionales”, se privilegió la lógica productiva sobre la social o cultural, mostrando la jerarquía económica en la movilidad.",
+    "La clasificación de viajes discrecionales refleja desigualdad: quienes podían costear turismo internacional quedaron fuera, mientras trabajadores esenciales del Sur Global fueron admitidos.",
+    // Nuevas ideas agregadas
+    "Scapegoating puede traducirse como “chivo expiatorio”: atribuir culpas a un grupo vulnerable para desviar la responsabilidad de los actores de poder. En la pandemia, esto reforzó estereotipos raciales y nacionalistas.",
+    "Las comunidades asiáticas fueron estigmatizadas como portadoras del virus, lo que incrementó la discriminación y la violencia simbólica y física en Canadá y en muchos otros países.",
+    "Hubo una contradicción en el tratamiento diferenciado: se llamó a la “unidad nacional” para que ciudadanos regresaran, pero al mismo tiempo se facilitó la entrada a empresarios estadounidenses, revelando una jerarquía de intereses.",
+    "La invocación de Trudeau a la “libertad de movimiento” fue irónica, pues contrastaba con las restricciones generales. El escándalo de políticos que vacacionaron en el extranjero mostró la fragilidad de la legitimidad gubernamental y la importancia de la percepción pública.",
+    // Tarjeta 4 ideas / posibles respuestas
+    "La paradoja está en que los estudiantes internacionales eran tratados como actores “opcionales” a nivel migratorio, pero “esenciales” para la economía universitaria.",
+    "La educación internacional pasó de un discurso de cooperación y desarrollo a un régimen neoliberal, donde los estudiantes del Sur Global sostienen financieramente a las universidades canadienses.",
+    "La insistencia en la presencia física revela cómo el valor económico pesaba más que el pedagógico: la matrícula internacional (4.5 veces la nacional) se volvió insustituible por la enseñanza en línea.",
+    "La discrecionalidad en la frontera muestra la precariedad jurídica de los estudiantes internacionales: aun con permisos, podían ser rechazados, lo que genera inseguridad y vulnerabilidad.",
+    // Tarjeta 5 ideas / posibles respuestas
+    "El SAWP es un acuerdo bilateral que facilita la migración temporal desde México y Jamaica hacia Canadá, garantizando mano de obra barata para el sector agrícola.",
+    "Los empleadores canadienses se benefician de costos laborales reducidos al contratar a migrantes que aceptan condiciones que los trabajadores locales rechazarían.",
+    "El requisito de regresar cada año a sus países de origen reafirma su estatus como “temporales” y niega la posibilidad de integración o permanencia.",
+    "La imposibilidad de acceder a la residencia perpetúa la vulnerabilidad, consolidando una jerarquía laboral basada en origen nacional y estatus migratorio.",
+    "Las condiciones de sobreexplotación, hacinamiento y falta de derechos laborales reflejan patrones comunes en sistemas agrícolas globalizados, donde los migrantes son esenciales pero desechables.",
+    // Tarjeta 6 ideas / posibles respuestas
+    "El sistema de renovación perpetua de permisos temporales crea una exclusión estructural: los trabajadores nunca acceden a residencia permanente, aunque su presencia sea continua y necesaria.",
+    "La narrativa cambió de “unskilled” a valorar sus “habilidades y eficiencia”, pero sin modificar su estatus precario, lo que muestra un reconocimiento instrumental, no de derechos.",
+    "La frase sobre lo esencial del trabajo pero no del trabajador evidencia que lo que se valora es la función económica, no la dignidad del sujeto.",
+    "Comparar con la lógica del trabajo esclavo permite ver cómo se explota el carácter indispensable del trabajo mientras se niega valor intrínseco a las personas.",
+    "Las organizaciones de migrantes denunciaron la falta de medidas sanitarias, el hacinamiento y la explotación laboral, revelando cómo la vulnerabilidad estructural se agravó con la pandemia.",
+    // Tarjeta 7 ideas / posibles respuestas (nuevas ideas agregadas)
+    "Las cifras récord de admisión de inmigrantes permanentes en Canadá durante 2024-2025 reflejan una respuesta expansiva a la crisis, pero la reducción proyectada muestra la fragilidad de estas políticas ante presiones internas.",
+    "EE.UU. priorizó categorías laborales específicas y mantuvo restricciones, mientras México se enfocó en migración temporal, contrastando con la flexibilización canadiense.",
+    "La flexibilización migratoria puede ser reactiva y limitada si no se integra con políticas sostenibles; la reversión posterior evidencia la volatilidad de las medidas.",
+    "La migración puede impulsar el desarrollo si se articula con planificación urbana, social y laboral, pero sin políticas estructurales corre el riesgo de ser una solución temporal."
+  ];
+
+  let current = 0;
+  let flipped = false;
+
+  const frontFace = document.getElementById('frontFace');
+  const backFace = document.getElementById('backFace');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const flipBtn = document.getElementById('flipBtn');
+  const randomBtn = document.getElementById('randomBtn');
+
+  // Aplica linkifyCBSA a cada idea y pregunta antes de mostrar
+  function renderSlide(idx) {
+    frontFace.innerHTML = `<h2>Pregunta ${idx + 1}</h2><div style="margin-top:2.5rem;font-size:2.1rem;">${linkifyCBSA(preguntas[idx])}</div>`;
+    backFace.innerHTML = `<h2>Idea clave</h2><div style="margin-top:2.5rem;font-size:2.1rem;">${linkifyCBSA(ideas[idx])}</div>`;
+    prevBtn.disabled = idx === 0;
+    nextBtn.disabled = idx === preguntas.length - 1;
+    if (flipped) {
+      frontFace.classList.remove('active');
+      backFace.classList.add('active');
+      flipBtn.textContent = "Ver pregunta";
+    } else {
+      frontFace.classList.add('active');
+      backFace.classList.remove('active');
+      flipBtn.textContent = "Ver idea clave";
+    }
+  }
+
+  flipBtn.onclick = () => {
+    flipped = !flipped;
+    renderSlide(current);
+  };
+
+  prevBtn.onclick = () => {
+    if (current > 0) {
+      current--;
+      flipped = false;
+      renderSlide(current);
+    }
+  };
+  nextBtn.onclick = () => {
+    if (current < preguntas.length - 1) {
+      current++;
+      flipped = false;
+      renderSlide(current);
+    }
+  };
+  randomBtn.onclick = () => {
+    let rand;
+    do {
+      rand = Math.floor(Math.random() * preguntas.length);
+    } while (rand === current);
+    current = rand;
+    flipped = false;
+    renderSlide(current);
+  };
+
+  renderSlide(current);
+
+  window.showWalzerPopup = showWalzerPopup;
+  window.showCBSAPopup = showCBSAPopup;
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Migración y Desarrollo · Actividades del curso</title>
+  <style>
+    :root{
+      --teal:#0b8a8f;
+      --teal-dark:#086b6f;
+      --sun:#ffb64d;
+      --coral:#ff4b4b;
+      --cream:#fff7ec;
+      --ink:#103338;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#f6fcfc}
+    a{color:var(--teal-dark);text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{position:relative;overflow:hidden;color:white}
+    .hero{
+      padding:3.5rem 1.25rem 2.75rem;
+      background: linear-gradient(135deg, rgba(255,75,75,.92), rgba(255,182,77,.90) 35%, rgba(11,138,143,.95) 85%);
+      background-size:cover;
+      border-bottom:8px solid var(--coral);
+    }
+    .hero-inner{max-width:1000px;margin:0 auto}
+    .title{margin:.35rem 0 0;font-size:clamp(2rem,5vw,3rem);font-weight:900;line-height:1.1}
+    .subtitle{margin:.5rem 0 0;font-size:clamp(1rem,2.3vw,1.2rem);opacity:.95}
+    .container{max-width:1000px;margin:0 auto;padding:2rem 1.25rem}
+    .activity-list{margin:2.5rem 0 0 0;padding:0;list-style:none;}
+    .activity-list li{margin-bottom:1.5rem;}
+    .activity-link{display:inline-flex;align-items:center;gap:.5rem;border:2px solid var(--teal);border-radius:999px;padding:.7rem 1.3rem;font-weight:700;background:white;font-size:1.15rem;}
+    .activity-link:hover{background:#ebfffe}
+    footer{margin-top:2rem;background:var(--teal-dark);color:#e6ffff}
+    .footer-inner{max-width:1000px;margin:0 auto;padding:1rem 1.25rem;display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:.6rem}
+    .brand .stripe{width:8px;height:28px;background:var(--coral);border-radius:3px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <div class="hero-inner">
+        <h1 class="title">Migración y Desarrollo</h1>
+        <p class="subtitle">Actividades del curso · Facultad de Contaduría y Administración, UNAM</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2 style="margin-top:0;">Actividades</h2>
+    <ul class="activity-list">
+      <li>
+        <a href="4inessential/index.html" class="activity-link">
+          Actividad 4: (In)Essential Bordering: Canadá, COVID y movilidad
+        </a>
+      </li>
+      <!-- Aquí puedes agregar más actividades en el futuro -->
+    </ul>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="brand"><span class="stripe"></span>
+        <div>Dr. Jorge Cardiel Herrera, Facultad de Contaduría y Administración, 2025, UNAM.</div>
+      </div>
+      <div>Colores inspirados en <em>Migration and Pandemics</em> (IMISCOE · Springer).</div>
+    </div>
+  </footer>
+</body>
+</html>

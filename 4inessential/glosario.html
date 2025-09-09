@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Glosario · (In)Essential Bordering</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    :root{
+      --teal:#0b8a8f;
+      --teal-dark:#086b6f;
+      --sun:#ffb64d;
+      --coral:#ff4b4b;
+      --cream:#fff7ec;
+      --ink:#103338;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#f6fcfc}
+    a{color:var(--teal-dark);text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{position:relative;overflow:hidden;color:white}
+    .hero{
+      padding:2.5rem 1.25rem 1.75rem;
+      background: linear-gradient(135deg, rgba(255,75,75,.92), rgba(255,182,77,.90) 35%, rgba(11,138,143,.95) 85%);
+      background-size:cover;
+      border-bottom:8px solid var(--coral);
+    }
+    .hero-inner{max-width:1000px;margin:0 auto}
+    .title{margin:.35rem 0 0;font-size:clamp(1.6rem,4.2vw,2.2rem);font-weight:900;line-height:1.1}
+    .subtitle{margin:.5rem 0 0;font-size:clamp(1rem,2.3vw,1.1rem);opacity:.95}
+    .container{max-width:1000px;margin:0 auto;padding:1.5rem 1.25rem}
+    .glossary-list{margin:2rem 0 0 0;padding:0;list-style:none;}
+    .glossary-entry{background:var(--cream);border-radius:18px;border:1px solid #e3efef;box-shadow:0 6px 18px rgba(11,138,143,.10);padding:1.2rem 1.2rem 1.2rem 1.2rem;margin-bottom:1.5rem;}
+    .glossary-title{font-size:1.25rem;font-weight:700;color:var(--teal-dark);margin-bottom:.7rem;}
+    .glossary-body{font-size:1.08rem;}
+    footer{margin-top:2rem;background:var(--teal-dark);color:#e6ffff}
+    .footer-inner{max-width:1000px;margin:0 auto;padding:1rem 1.25rem;display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:.6rem}
+    .brand .stripe{width:8px;height:28px;background:var(--coral);border-radius:3px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <div class="hero-inner">
+        <h1 class="title">Glosario</h1>
+        <p class="subtitle">Conceptos clave · Actividad 4 · (In)Essential Bordering</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="index.html" class="add" style="margin-bottom:1.5rem;display:inline-block;">← Regresar a la actividad</a>
+    <ul class="glossary-list">
+      <li class="glossary-entry">
+        <div class="glossary-title">UN Refugee Convention (Convención de 1951 sobre el Estatuto de los Refugiados)</div>
+        <div class="glossary-body">
+          Es un tratado internacional adoptado en 1951 en el marco de las Naciones Unidas que establece la definición legal de refugiado y los derechos que le asisten, así como las obligaciones de los Estados firmantes. El Protocolo de 1967 amplió su alcance, eliminando las limitaciones originales que restringían la protección a eventos ocurridos antes de 1951 y principalmente en Europa.<br><br>
+          <strong>Definición de refugiado (Artículo 1):</strong><br>
+           En la Convención sobre el Estatuto de los Refugiados de 1951, el término refugiado se define como una persona que “debido a fundados temores de ser perseguida por motivos de raza, religión, nacionalidad, pertenencia a determinado grupo social u opiniones políticas, se encuentre fuera del país de su nacionalidad y no pueda o, a causa de dichos temores, no quiera acogerse a la protección de tal país”. <br><br>
+          <strong>Principios básicos:</strong>
+          <ul>
+            <li><strong>Non-refoulement (no devolución):</strong> prohíbe expulsar o devolver a un refugiado a un territorio donde su vida o libertad corran peligro. Este principio es considerado parte del derecho internacional consuetudinario.</li>
+            <li><strong>Derechos fundamentales:</strong> acceso a tribunales, educación, empleo, asistencia pública, documentos de identidad y de viaje.</li>
+            <li><strong>Exclusiones:</strong> la protección no se aplica a personas que hayan cometido crímenes de guerra, delitos graves comunes o actos contrarios a los propósitos de la ONU.</li>
+          </ul>
+          <strong>Rol del ACNUR (UNHCR):</strong><br>
+          El Alto Comisionado de las Naciones Unidas para los Refugiados supervisa la aplicación de la Convención y apoya a los Estados en su implementación, actuando como “guardián” de los estándares internacionales de protección.
+        </div>
+      </li>
+    </ul>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="brand"><span class="stripe"></span>
+        <div>Dr. Jorge Cardiel Herrera, Facultad de Contaduría y Administración, 2025, UNAM.</div>
+      </div>
+      <div>Colores inspirados en <em>Migration and Pandemics</em> (IMISCOE · Springer).</div>
+    </div>
+  </footer>
+</body>
+</html>
