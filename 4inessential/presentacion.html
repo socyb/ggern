@@ -7,15 +7,41 @@
   <link rel="stylesheet" href="../css/styles.css" />
   <style>
     :root{
-      --teal:#0b8a8f;
-      --teal-dark:#086b6f;
-      --sun:#ffb64d;
-      --coral:#ff4b4b;
-      --cream:#fff7ec;
-      --ink:#103338;
+      --blue-deep: #174a7e;
+      --blue-light: #7bb6e9;
+      --white: #ffffff;
+      --rose: #c94a5a;
+      --rose-dark: #8b2d3a;
+      --ink: #1a2636;
+      --btn-border: #174a7e; /* Nuevo color de borde para botones azules */
     }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--blue-light)}
+    a{color:var(--rose-dark);text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{position:relative;overflow:hidden;color:var(--white)}
+    .hero{
+      padding:3.5rem 1.25rem 2.75rem;
+      background: linear-gradient(135deg, var(--blue-deep) 60%, var(--rose) 100%);
+      background-size:cover;
+      border-bottom:8px solid var(--rose);
+    }
+    .hero-inner{max-width:1000px;margin:0 auto}
+    .title{margin:.35rem 0 0;font-size:clamp(2rem,5vw,3rem);font-weight:900;line-height:1.1}
+    .subtitle{margin:.5rem 0 0;font-size:clamp(1rem,2.3vw,1.2rem);opacity:.95}
+    .container{max-width:1000px;margin:0 auto;padding:2rem 1.25rem}
+    .card{background:var(--white);border-radius:18px;border:1px solid var(--blue-light);box-shadow:0 6px 18px rgba(23,74,126,.10);overflow:hidden}
+    .card-header{background:linear-gradient(90deg,var(--rose),var(--blue-light));color:var(--ink);}
+    .pill{background:rgba(255,255,255,.92);color:var(--rose-dark);}
+    .muted{color:var(--blue-deep);}
+    .panel{background:var(--white);border:1px solid var(--blue-light);}
+    .badge{background:var(--rose);color:var(--white);}
+    .meta{color:var(--blue-deep);}
+    footer{background:var(--blue-deep);color:var(--white);}
+    .brand .stripe{background:var(--rose);}
+    .add{border:2px solid var(--blue-deep);background:var(--white);color:var(--blue-deep);}
+    .add:hover{background:var(--blue-light);}
     body {
-      background: var(--teal);
       color: #fff;
       margin: 0;
       font-family: system-ui, sans-serif;
@@ -94,46 +120,42 @@
       z-index: auto;
     }
     .btn {
-      background: var(--sun);
+      background: var(--blue-light);
       color: var(--ink);
-      border: none;
+      border: 2px solid var(--btn-border); /* Borde azul profundo */
       border-radius: 999px;
       padding: 1rem 2.2rem;
       font-size: 1.2rem;
       font-weight: bold;
       cursor: pointer;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      transition: background .2s;
+      transition: background .2s, border-color .2s;
       margin-bottom: .5rem;
     }
     .btn:disabled {
       background: #ffe6b3;
       color: #aaa;
+      border: 2px solid #ffe6b3;
       cursor: not-allowed;
     }
+    .slide-face .slide-face-content,
+    .slide-face-content ul,
+    .slide-face-content li {
+      font-size: 3rem !important;
+      line-height: 1.4 !important;
+    }
     @media (max-width: 950px) {
-      .card-flip, .slide-face {
-        max-width: 98vw;
+      .slide-face .slide-face-content,
+      .slide-face-content ul,
+      .slide-face-content li {
+        font-size: 2rem !important;
       }
     }
     @media (max-width: 600px) {
-      .card-flip {
-        max-width: 100vw;
-        min-height: 160px;
-      }
-      .slide-face {
-        font-size: 1.15rem;
-        padding: 1rem .5rem;
-        min-height: 160px;
-      }
-      .slide-face h1, .slide-face h2 {
-        font-size: 1.2rem;
-      }
-      .controls {
-        flex-direction: column;
-        gap: .5rem;
-        margin-bottom: 1.2rem;
-        margin-top: 1rem;
+      .slide-face .slide-face-content,
+      .slide-face-content ul,
+      .slide-face-content li {
+        font-size: 1.3rem !important;
       }
     }
     @media (max-width: 400px) {
@@ -287,89 +309,36 @@
     return text.replace(/CBSA/g, `<a href="#" onclick="showCBSAPopup();return false;" style="color:var(--coral);text-decoration:underline;font-weight:700;">CBSA</a>`);
   }
 
-  // Preguntas e ideas clave
+  // Preguntas y ideas clave para las tarjetas 1 a 4 (Recursos renovables y no renovables)
   const preguntas = [
-    // Tarjeta 1 preguntas
-    linkifyWalzer("Walzer sostiene que la libre movilidad interna se sostiene en la presunción de cierre en las fronteras nacionales. Durante la pandemia, sin embargo, el Estado canadiense extendió su soberanía al control de todos los movimientos —desde el cruce internacional hasta los desplazamientos cotidianos—, generando una situación de stasis casi total. ¿En este contexto, la experiencia canadiense confirma o desmiente la hipótesis de Walzer? ¿Qué nos revela sobre la capacidad del Estado de redefinir la movilidad como un privilegio permitido más que como un derecho?"),
-    "¿Qué actores decidieron qué era “esencial” en Canadá (gobierno federal, provincias, sectores económicos, tribunales)? ¿Con qué criterios explícitos o implícitos?",
-    "¿Cómo se reconfiguró la jerarquía de admisibilidad durante la pandemia? Contrasta “pasaporte privilegiado” vs. “entrada por necesidad”.",
-    "Etiqueta y estigma: ¿qué efectos tuvieron narrativas como “virus chino/Wuhan”? Identifica consecuencias raciales y políticas.",
-    "Comparativo México-Canadá: en México también se distinguió entre actividades esenciales y no esenciales. ¿Quién definió esas listas a nivel federal/estatal/municipal? ¿Qué negocios o trabajadores quedaron excluidos/invisibilizados?",
-    "¿Qué implica conceptualizar la movilidad como permitida y no como derecho a la libre circulación? ¿Qué riesgos permanecen post-pandemia?",
-    // Tarjeta 2 preguntas
-    "¿Por qué el gobierno canadiense utilizó la Quarantine Act en lugar de leyes antiterroristas? ¿Qué implicaciones tiene esto en términos de derechos y control?",
-    "¿Cómo refuerza la categoría de “esencial” estereotipos sobre quién representa peligro y quién es necesario?",
-    "¿Qué actividades quedaron fuera como “opcionales” o “discrecionales”? ¿Qué revela esto sobre el modelo económico y social canadiense?",
-    "¿Cómo se relaciona la lista de viajes discrecionales con desigualdades de clase y acceso?",
-    // Nuevas preguntas agregadas
-    "¿Qué significa el concepto de scapegoating y cómo podemos traducirlo al español? ¿Qué riesgos tiene en contextos de crisis sanitarias y migratorias?",
-    "¿De qué forma se manifestó el scapegoating hacia comunidades asiáticas durante la pandemia en Canadá y a nivel global?",
-    "¿Cómo interpretar la exhortación del gobierno canadiense a que sus ciudadanos regresaran al país, mientras al mismo tiempo se autorizaba la entrada de ciertos empresarios estadounidenses?",
-    "¿Qué contradicciones se observan entre el discurso oficial de Trudeau sobre la libertad de movimiento y las acciones de políticos que viajaron al extranjero durante las restricciones?",
-    // Tarjeta 4 preguntas
-    "¿Qué paradoja revela el papel de los estudiantes internacionales en Canadá durante la pandemia?",
-    "¿Cómo pasó la figura del estudiante internacional de ser vista como “beneficiario de ayuda” a convertirse en “fuente de ingresos”?",
-    "¿Por qué se consideraba “económicamente esencial” su presencia física, incluso cuando existía la alternativa de educación en línea?",
-    "¿Qué riesgos implica dejar en manos de oficiales fronterizos la decisión final sobre la entrada de estudiantes con permisos válidos?",
-    // Tarjeta 5 preguntas
-    "¿Cómo funciona el SAWP y qué países participan en este esquema?",
-    "¿Por qué se considera que los trabajadores agrícolas migrantes ocupan condiciones laborales “debajo de lo que los canadienses aceptarían”?",
-    "¿Qué significa el “ritual anual de retorno” y cómo refuerza la precariedad de estos trabajadores?",
-    "¿Qué implicaciones sociales y éticas tiene que los trabajadores agrícolas temporales no puedan acceder a la residencia permanente?",
-    "¿Qué paralelismos podemos encontrar entre el caso canadiense y las condiciones de trabajadores agrícolas en México o Estados Unidos?",
-    // Tarjeta 6 preguntas
-    "¿Cómo se genera una exclusión estructural mediante el esquema de renovación continua de permisos temporales?",
-    "¿Qué significa que antes fueran considerados “unskilled” y, durante la pandemia, se les reconociera como trabajadores con “skills, experience and efficiency”?",
-    "¿Qué nos revela la afirmación de que “hacer el trabajo esencial no hace esencial al trabajador”?",
-    "¿Cómo se relaciona esta lógica con la noción de trabajo esclavo en economías dependientes?",
-    "¿Qué papel tuvieron las organizaciones de trabajadores migrantes al visibilizar los riesgos sanitarios y las omisiones del gobierno y empleadores?",
-    // Tarjeta 7 preguntas (nuevas preguntas agregadas)
-    "¿Qué tendencias muestran los datos de inmigración permanente en Canadá en 2025 frente a la coyuntura pandémica?",
-    "¿Qué diferencias y similitudes existen entre las políticas migratorias de Canadá, EE.UU. y México durante y después de la pandemia?",
-    "¿Qué riesgos y oportunidades implica la flexibilización temporal de la residencia permanente en contextos de crisis?",
-    "¿Cómo puede la migración contribuir al desarrollo?"
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>¿Qué diferencia hay entre un recurso renovable y uno no renovable?</li>
+    </ul>`,
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>¿Cómo ejemplifica Meadows un sistema basado en petróleo (no renovable) frente a un sistema agrícola o forestal (renovable)?</li>
+    </ul>`,
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>¿Por qué ningún sistema físico puede crecer indefinidamente en un entorno finito?</li>
+    </ul>`,
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>¿Qué implicaciones tiene esta distinción para la gestión de energía y recursos naturales hoy?</li>
+    </ul>`
   ];
 
   const ideas = [
-    // Tarjeta 1 ideas
-    linkifyWalzer("La experiencia canadiense confirma parcialmente la tesis de Walzer: al cerrarse fronteras nacionales, emergieron múltiples barreras internas (provincias, comunidades indígenas, municipios). Pero también la desmiente, porque el cierre interno no fue una reacción a fronteras abiertas, sino parte de una soberanía extendida que reguló toda movilidad. Esto muestra la capacidad del Estado para redefinir la circulación como privilegio otorgado, no como derecho garantizado."),
-    "Las decisiones sobre lo esencial se tomaron en varios niveles: el gobierno federal fijó reglas generales, las provincias adaptaron medidas según contextos locales, y sectores económicos presionaron para clasificar actividades como esenciales (p. ej. agricultura, transporte, salud). Los criterios mezclaron urgencia económica, necesidades básicas y legitimidad política, más que un principio único coherente.",
-    "Antes del COVID, la jerarquía favorecía a poseedores de pasaportes del Norte Global. Durante la pandemia, esa lógica se desplazó por la noción de necesidad inmediata: trabajadores agrícolas temporales, personal médico o transportistas podían ingresar aunque fueran del Sur Global. El pasaporte privilegiado perdió fuerza frente a la utilidad percibida en el momento.",
-    "Narrativas como “virus chino” o “Wuhan virus” reforzaron estigmas raciales, asociando enfermedad con nacionalidad o etnia. En Canadá y otros países, esto alimentó sinofobia, violencia verbal y física contra comunidades asiáticas, y legitimó políticas de exclusión bajo la lógica de proteger a la nación del ‘otro peligroso’.",
-    "En México, las listas de lo esencial se definieron a nivel federal, pero con variaciones estatales y municipales. Comercios como papelerías, gimnasios o pequeños negocios de barrio quedaron fuera, mientras sectores industriales con peso económico fueron clasificados como esenciales. Esto visibiliza cómo criterios económicos y de poder político pesaron más que la equidad social.",
-    "Considerar la movilidad como un permiso socava la idea de ciudadanía y de derechos universales de circulación. El riesgo post-pandemia es que el Estado conserve o reactive con facilidad mecanismos de control, legitimando nuevas formas de vigilancia y restricción bajo argumentos de seguridad o salud pública.",
-    // Tarjeta 2 ideas / posibles respuestas
-    "El uso de la Quarantine Act buscó minimizar protecciones jurídicas y maximizar capacidad de control, replicando patrones post-11S pero bajo una narrativa sanitaria.",
-    "La etiqueta de “esencial” no solo organizó el acceso, también reforzó prejuicios: lo extranjero como amenaza y lo útil económicamente como legítimo.",
-    "Al considerar turismo o recreación como “opcionales”, se privilegió la lógica productiva sobre la social o cultural, mostrando la jerarquía económica en la movilidad.",
-    "La clasificación de viajes discrecionales refleja desigualdad: quienes podían costear turismo internacional quedaron fuera, mientras trabajadores esenciales del Sur Global fueron admitidos.",
-    // Nuevas ideas agregadas
-    "Scapegoating puede traducirse como “chivo expiatorio”: atribuir culpas a un grupo vulnerable para desviar la responsabilidad de los actores de poder. En la pandemia, esto reforzó estereotipos raciales y nacionalistas.",
-    "Las comunidades asiáticas fueron estigmatizadas como portadoras del virus, lo que incrementó la discriminación y la violencia simbólica y física en Canadá y en muchos otros países.",
-    "Hubo una contradicción en el tratamiento diferenciado: se llamó a la “unidad nacional” para que ciudadanos regresaran, pero al mismo tiempo se facilitó la entrada a empresarios estadounidenses, revelando una jerarquía de intereses.",
-    "La invocación de Trudeau a la “libertad de movimiento” fue irónica, pues contrastaba con las restricciones generales. El escándalo de políticos que vacacionaron en el extranjero mostró la fragilidad de la legitimidad gubernamental y la importancia de la percepción pública.",
-    // Tarjeta 4 ideas / posibles respuestas
-    "La paradoja está en que los estudiantes internacionales eran tratados como actores “opcionales” a nivel migratorio, pero “esenciales” para la economía universitaria.",
-    "La educación internacional pasó de un discurso de cooperación y desarrollo a un régimen neoliberal, donde los estudiantes del Sur Global sostienen financieramente a las universidades canadienses.",
-    "La insistencia en la presencia física revela cómo el valor económico pesaba más que el pedagógico: la matrícula internacional (4.5 veces la nacional) se volvió insustituible por la enseñanza en línea.",
-    "La discrecionalidad en la frontera muestra la precariedad jurídica de los estudiantes internacionales: aun con permisos, podían ser rechazados, lo que genera inseguridad y vulnerabilidad.",
-    // Tarjeta 5 ideas / posibles respuestas
-    "El SAWP es un acuerdo bilateral que facilita la migración temporal desde México y Jamaica hacia Canadá, garantizando mano de obra barata para el sector agrícola.",
-    "Los empleadores canadienses se benefician de costos laborales reducidos al contratar a migrantes que aceptan condiciones que los trabajadores locales rechazarían.",
-    "El requisito de regresar cada año a sus países de origen reafirma su estatus como “temporales” y niega la posibilidad de integración o permanencia.",
-    "La imposibilidad de acceder a la residencia perpetúa la vulnerabilidad, consolidando una jerarquía laboral basada en origen nacional y estatus migratorio.",
-    "Las condiciones de sobreexplotación, hacinamiento y falta de derechos laborales reflejan patrones comunes en sistemas agrícolas globalizados, donde los migrantes son esenciales pero desechables.",
-    // Tarjeta 6 ideas / posibles respuestas
-    "El sistema de renovación perpetua de permisos temporales crea una exclusión estructural: los trabajadores nunca acceden a residencia permanente, aunque su presencia sea continua y necesaria.",
-    "La narrativa cambió de “unskilled” a valorar sus “habilidades y eficiencia”, pero sin modificar su estatus precario, lo que muestra un reconocimiento instrumental, no de derechos.",
-    "La frase sobre lo esencial del trabajo pero no del trabajador evidencia que lo que se valora es la función económica, no la dignidad del sujeto.",
-    "Comparar con la lógica del trabajo esclavo permite ver cómo se explota el carácter indispensable del trabajo mientras se niega valor intrínseco a las personas.",
-    "Las organizaciones de migrantes denunciaron la falta de medidas sanitarias, el hacinamiento y la explotación laboral, revelando cómo la vulnerabilidad estructural se agravó con la pandemia.",
-    // Tarjeta 7 ideas / posibles respuestas (nuevas ideas agregadas)
-    "Las cifras récord de admisión de inmigrantes permanentes en Canadá durante 2024-2025 reflejan una respuesta expansiva a la crisis, pero la reducción proyectada muestra la fragilidad de estas políticas ante presiones internas.",
-    "EE.UU. priorizó categorías laborales específicas y mantuvo restricciones, mientras México se enfocó en migración temporal, contrastando con la flexibilización canadiense.",
-    "La flexibilización migratoria puede ser reactiva y limitada si no se integra con políticas sostenibles; la reversión posterior evidencia la volatilidad de las medidas.",
-    "La migración puede impulsar el desarrollo si se articula con planificación urbana, social y laboral, pero sin políticas estructurales corre el riesgo de ser una solución temporal."
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>Un recurso renovable puede regenerarse naturalmente en el tiempo (ejemplo: cultivos, bosques), mientras que un no renovable se agota al usarse (ejemplo: petróleo).</li>
+    </ul>`,
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>La economía del petróleo funciona como un sistema limitado: depende de un stock no renovable que, tarde o temprano, se acaba.</li>
+      <li>Los sistemas renovables también tienen límites: aunque puedan regenerse, requieren condiciones ambientales adecuadas (tiempo, nutrientes, agua).</li>
+    </ul>`,
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>Según Meadows, todo sistema de crecimiento exponencial combina bucles de refuerzo (que impulsan el crecimiento) con bucles de balanceo (que imponen límites). Esto significa que incluso los recursos renovables se saturan o degradan si la explotación supera su capacidad de regeneración.</li>
+    </ul>`,
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>Para la gestión contemporánea, esto implica diseñar políticas que reconozcan límites físicos y ecológicos, evitando ilusiones de crecimiento infinito.</li>
+    </ul>`
   ];
 
   let current = 0;
@@ -382,12 +351,12 @@
   const flipBtn = document.getElementById('flipBtn');
   const randomBtn = document.getElementById('randomBtn');
 
-  // Aplica linkifyCBSA a cada idea y pregunta antes de mostrar
   function renderSlide(idx) {
-    frontFace.innerHTML = `<h2>Pregunta ${idx + 1}</h2><div style="margin-top:2.5rem;font-size:2.1rem;">${linkifyCBSA(preguntas[idx])}</div>`;
-    backFace.innerHTML = `<h2>Idea clave</h2><div style="margin-top:2.5rem;font-size:2.1rem;">${linkifyCBSA(ideas[idx])}</div>`;
+    frontFace.innerHTML = `<h2>Pregunta ${idx + 1}</h2><div class="slide-face-content" style="margin-top:2.5rem;">${preguntas[idx]}</div>`;
+    backFace.innerHTML = `<h2>Idea clave</h2><div class="slide-face-content" style="margin-top:2.5rem;">${ideas[idx]}</div>`;
     prevBtn.disabled = idx === 0;
     nextBtn.disabled = idx === preguntas.length - 1;
+    randomBtn.disabled = false;
     if (flipped) {
       frontFace.classList.remove('active');
       backFace.classList.add('active');
@@ -411,6 +380,7 @@
       renderSlide(current);
     }
   };
+
   nextBtn.onclick = () => {
     if (current < preguntas.length - 1) {
       current++;
@@ -418,6 +388,7 @@
       renderSlide(current);
     }
   };
+
   randomBtn.onclick = () => {
     let rand;
     do {

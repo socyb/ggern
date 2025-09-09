@@ -3,27 +3,27 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Actividad 4 · (In)Essential Bordering: Canadá, COVID y movilidad</title>
+  <title>Actividad 4 · Thinking in Systems</title>
   <link rel="stylesheet" href="css/styles.css" />
   <style>
     :root{
-      --teal:#0b8a8f;
-      --teal-dark:#086b6f;
-      --sun:#ffb64d;
-      --coral:#ff4b4b;
-      --cream:#fff7ec;
-      --ink:#103338;
+      --blue-deep: #174a7e;      /* Azul profundo del fondo */
+      --blue-light: #7bb6e9;     /* Azul claro de las nubes */
+      --white: #ffffff;          /* Blanco de las nubes */
+      --rose: #c94a5a;           /* Rosa/rojo del traje */
+      --rose-dark: #8b2d3a;      /* Tono más oscuro del traje */
+      --ink: #1a2636;            /* Azul oscuro para texto */
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#f6fcfc}
-    a{color:var(--teal-dark);text-decoration:none}
+    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--blue-light)}
+    a{color:var(--rose-dark);text-decoration:none}
     a:hover{text-decoration:underline}
-    header{position:relative;overflow:hidden;color:white}
+    header{position:relative;overflow:hidden;color:var(--white)}
     .hero{
       padding:3.5rem 1.25rem 2.75rem;
-      background: linear-gradient(135deg, rgba(255,75,75,.92), rgba(255,182,77,.90) 35%, rgba(11,138,143,.95) 85%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="%23ffb64d"/><stop offset="100%" stop-color="%230b8a8f"/></linearGradient></defs><rect width="1200" height="400" fill="url(%23g)" opacity="0.25"/></svg>');
+      background: linear-gradient(135deg, var(--blue-deep) 60%, var(--rose) 100%);
       background-size:cover;
-      border-bottom:8px solid var(--coral);
+      border-bottom:8px solid var(--rose);
     }
     .hero-inner{max-width:1000px;margin:0 auto}
     .kicker{letter-spacing:.08em;text-transform:uppercase;font-weight:800;font-size:.9rem;opacity:.95}
@@ -36,24 +36,22 @@
       .col-8{grid-column:span 8}
       .col-4{grid-column:span 4}
     }
-    .card{background:var(--cream);border-radius:18px;border:1px solid #e3efef;box-shadow:0 6px 18px rgba(11,138,143,.10);overflow:hidden}
-    .card-header{display:flex;align-items:center;gap:.6rem;padding:.9rem 1rem;background:linear-gradient(90deg,var(--coral),var(--sun));color:#1b1b1b;font-weight:800}
-    .pill{background:rgba(255,255,255,.92);padding:.2rem .6rem;border-radius:999px;font-size:.8rem;letter-spacing:.02em}
+    .card{background:var(--white);border-radius:18px;border:1px solid var(--blue-light);box-shadow:0 6px 18px rgba(23,74,126,.10);overflow:hidden}
+    .card-header{background:linear-gradient(90deg,var(--rose),var(--blue-light));color:var(--ink);}
+    .pill{background:rgba(255,255,255,.92);color:var(--rose-dark);}
     .card-body{padding:1.1rem 1rem 1.2rem}
     .h3{margin:.2rem 0 .65rem;font-size:1.15rem}
-    .muted{color:#44676c}
+    .muted{color:var(--blue-deep);}
     ul{margin:.4rem 0 .8rem;padding-left:1.2rem}
     li{margin:.25rem 0}
     .q-list{border-top:1px dashed #cbe3e5;padding-top:.75rem;margin-top:.75rem}
-    .panel{background:white;border:1px solid #e3efef;border-radius:16px;padding:1rem;position:sticky;top:1rem}
-    .badge{display:inline-block;background:var(--teal);color:white;border-radius:999px;padding:.28rem .55rem;font-size:.78rem;font-weight:700}
-    .meta{font-size:.92rem;color:#33585c}
-    footer{margin-top:2rem;background:var(--teal-dark);color:#e6ffff}
-    .footer-inner{max-width:1000px;margin:0 auto;padding:1rem 1.25rem;display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:.6rem}
-    .brand .stripe{width:8px;height:28px;background:var(--coral);border-radius:3px}
-    .add{display:inline-flex;align-items:center;gap:.5rem;border:2px solid var(--teal);border-radius:999px;padding:.5rem .9rem;font-weight:700;background:white}
-    .add:hover{background:#ebfffe}
+    .panel{background:var(--white);border:1px solid var(--blue-light);}
+    .badge{background:var(--rose);color:var(--white);}
+    .meta{color:var(--blue-deep);}
+    footer{background:var(--blue-deep);color:var(--white);}
+    .brand .stripe{background:var(--rose);}
+    .add{border:2px solid var(--blue-deep);background:var(--white);color:var(--blue-deep);}
+    .add:hover{background:var(--blue-light);}
   </style>
 </head>
 <body>
@@ -61,8 +59,8 @@
     <div class="hero">
       <div class="hero-inner">
         <div class="kicker">Actividad 4.</div>
-        <h1 class="title">(In)Essential Bordering: Canadá, COVID y movilidad</h1>
-        <p class="subtitle">Migración y Desarrollo · Guía de lectura y discusión basada en <em>Macklin (2022)</em> del volumen <em>Migration and Pandemics</em>.</p>
+        <h1 class="title">Thinking in Systems</h1>
+        <p class="subtitle">Gobierno, Gestión de Energía y Recursos Naturales · Guía de lectura y discusión basada en <em>Donella Meadows</em> del libro <em>Thinking in Systems</em>.</p>
         <a href="presentacion.html" class="add">Modo Presentación</a>
         <!-- Botón para regresar al índice principal -->
         <a href="../index.html" class="add" style="margin-left:1rem;">← Regresar a actividades del curso</a>
@@ -77,43 +75,46 @@
         <button id="toggleCardBtn" class="add" style="margin-bottom:1.5rem;">
           Mostrar Tarjeta 1
         </button>
-        <!-- Tarjeta 1 oculta por defecto -->
+        <!-- Tarjeta 1 visible por defecto -->
         <article class="card" id="t1" style="display:none;">
           <div class="card-header">
             <span class="pill">Tarjeta 1</span>
-            Introducción y “La frontera no excepcional”
+            Recursos renovables y no renovables<br>
+            <span class="meta"><strong>Referencia:</strong> Meadows, D. H., & Wright, D. (2009). Thinking in Systems: A Primer. Earthscan. pp. 58–59.</span>
           </div>
           <div class="card-body">
-            <h3 class="h3">Ideas clave</h3>
+            <h3 class="h3">Citas destacadas</h3>
             <ul>
-              <li><strong>Choque de movilidades:</strong> el cruce transfronterizo del virus trastocó el cruce de personas, bienes e ideas; se alteraron los patrones de movilidad y surgió sospecha social (p.ej., placas de EE.&nbsp;UU. en Canadá en 2020).</li>
-              <li><strong>Vínculo entre control en la frontera y dentro del territorio:</strong> COVID-19 hizo visible que el Estado puede regular la movilidad <em>interna</em> con similar intensidad—desde el hogar hasta provincias—difuminando la supuesta diferencia entre “frontera” y “adentro”.</li>
-              <li><strong>Walzer y los “mil fortines”:</strong> la libre circulación interna suele apoyarse en la presunción de fronteras nacionales cerradas; con la pandemia emergieron múltiples barreras subnacionales, confirmando y a la vez tensionando esa tesis.</li>
-              <li><strong>De la deseabilidad al carácter “esencial”:</strong> la clasificación tradicional (privilegio de pasaporte del Norte Global) fue temporalmente sustituida por una tipología de lo <em>esencial</em> (trabajo, interés, necesidad) definida por criterios econo‑legales‑políticos.</li>
-              <li><strong>Movilidad “permitida”, no “libre”:</strong> bajo COVID, toda movilidad se volvió sospechosa; la función de la frontera se integró en un aparato general de inmovilización para proteger la salud pública.</li>
+              <li>“A Renewable Stock Constrained by a Nonrenewable Stock—an Oil Economy.” (p. 58)</li>
+              <li>“The capital stock of the industrial economy model didn’t require raw materials to produce output. The population didn’t need food. The meant-for-furnace system never ran out of oil.” (p. 58)</li>
+              <li>“In physical, exponentially growing systems, there must be at least one reinforcing loop driving the growth and at least one balancing loop constraining the growth, because no physical system can grow forever in a finite environment.” (p. 59)</li>
             </ul>
 
             <div class="q-list">
               <h3 class="h3">Preguntas para detonar discusión</h3>
               <ul>
-                <li>Walzer sostiene que la libre movilidad interna se sostiene en la presunción de cierre en las fronteras nacionales. Durante la pandemia, sin embargo, el Estado canadiense extendió su soberanía al control de todos los movimientos —desde el cruce internacional hasta los desplazamientos cotidianos—, generando una situación de stasis casi total. ¿En este contexto, la experiencia canadiense confirma o desmiente la hipótesis de Walzer? ¿Qué nos revela sobre la capacidad del Estado de redefinir la movilidad como un privilegio permitido más que como un derecho?</li>
-                <li>¿Qué <em>actores</em> decidieron qué era “esencial” en Canadá (gobierno federal, provincias, sectores económicos, tribunales)? ¿Con qué criterios explícitos o implícitos?</li>
-                <li>¿Cómo se reconfiguró la jerarquía de admisibilidad durante la pandemia? Contrasta “pasaporte privilegiado” vs. “entrada por necesidad”.</li>
-                <li>Etiqueta y estigma: ¿qué efectos tuvieron narrativas como “virus chino/Wuhan”? Identifica consecuencias raciales y políticas.</li>
-                <li><strong>Comparativo México‑Canadá:</strong> en México también se distinguió entre actividades esenciales y no esenciales. ¿Quién definió esas listas a nivel federal/estatal/municipal? ¿Qué negocios o trabajadores quedaron excluidos/invisibilizados?</li>
-                <li>¿Qué implica conceptualizar la movilidad como <em>permitida</em> y no como derecho a la libre circulación? ¿Qué riesgos permanecen post‑pandemia?</li>
+                <li>¿Qué diferencia hay entre un recurso renovable y uno no renovable?</li>
+                <li>¿Cómo ejemplifica Meadows un sistema basado en petróleo (no renovable) frente a un sistema agrícola o forestal (renovable)?</li>
+                <li>¿Por qué ningún sistema físico puede crecer indefinidamente en un entorno finito?</li>
+                <li>¿Qué implicaciones tiene esta distinción para la gestión de energía y recursos naturales hoy?</li>
               </ul>
             </div>
 
-            <p class="muted">Nota: Esta tarjeta resume y adapta la introducción y la sección “The Unexceptional Border” de Macklin (2022), integrando un ángulo comparativo con México para el trabajo en clase.</p>
+            <h3 class="h3">Ideas / Respuestas</h3>
+            <ul>
+              <li>Un recurso renovable puede regenerarse naturalmente en el tiempo (ejemplo: cultivos, bosques), mientras que un no renovable se agota al usarse (ejemplo: petróleo).</li>
+              <li>La economía del petróleo funciona como un sistema limitado: depende de un stock no renovable que, tarde o temprano, se acaba.</li>
+              <li>Los sistemas renovables también tienen límites: aunque puedan regenerarse, requieren condiciones ambientales adecuadas (tiempo, nutrientes, agua).</li>
+              <li>Según Meadows, todo sistema de crecimiento exponencial combina bucles de refuerzo (que impulsan el crecimiento) con bucles de balanceo (que imponen límites). Esto significa que incluso los recursos renovables se saturan o degradan si la explotación supera su capacidad de regeneración.</li>
+              <li>Para la gestión contemporánea, esto implica diseñar políticas que reconozcan límites físicos y ecológicos, evitando ilusiones de crecimiento infinito.</li>
+            </ul>
           </div>
         </article>
 
-        <!-- Botón para mostrar/ocultar la tarjeta 2 -->
-        <button id="toggleCard2Btn" class="add" style="margin-bottom:1.5rem;">
+        <!-- Tarjetas 2 a 7 ocultas -->
+        <button id="toggleCard2Btn" class="add" style="margin-bottom:1.5rem; display:none;">
           Mostrar Tarjeta 2
         </button>
-        <!-- Tarjeta 2 oculta por defecto -->
         <article class="card" id="t2" style="display:none;">
           <div class="card-header">
             <span class="pill">Tarjeta 2</span>
@@ -146,8 +147,7 @@
           </div>
         </article>
 
-        <!-- Botón para mostrar/ocultar la tarjeta 3 -->
-        <button id="toggleCard3Btn" class="add" style="margin-bottom:1.5rem;">
+        <button id="toggleCard3Btn" class="add" style="margin-bottom:1.5rem; display:none;">
           Mostrar Tarjeta 3
         </button>
         <article class="card" id="t3" style="display:none;">
@@ -181,8 +181,7 @@
           </div>
         </article>
 
-        <!-- Botón para mostrar/ocultar la tarjeta 4 -->
-        <button id="toggleCard4Btn" class="add" style="margin-bottom:1.5rem;">
+        <button id="toggleCard4Btn" class="add" style="margin-bottom:1.5rem; display:none;">
           Mostrar Tarjeta 4
         </button>
         <article class="card" id="t4" style="display:none;">
@@ -217,8 +216,7 @@
           </div>
         </article>
 
-        <!-- Botón para mostrar/ocultar la tarjeta 5 -->
-        <button id="toggleCard5Btn" class="add" style="margin-bottom:1.5rem;">
+        <button id="toggleCard5Btn" class="add" style="margin-bottom:1.5rem; display:none;">
           Mostrar Tarjeta 5
         </button>
         <article class="card" id="t5" style="display:none;">
@@ -255,8 +253,7 @@
           </div>
         </article>
 
-        <!-- Botón para mostrar/ocultar la tarjeta 6 -->
-        <button id="toggleCard6Btn" class="add" style="margin-bottom:1.5rem;">
+        <button id="toggleCard6Btn" class="add" style="margin-bottom:1.5rem; display:none;">
           Mostrar Tarjeta 6
         </button>
         <article class="card" id="t6" style="display:none;">
@@ -294,8 +291,7 @@
           </div>
         </article>
 
-        <!-- Botón para mostrar/ocultar la tarjeta 7 -->
-        <button id="toggleCard7Btn" class="add" style="margin-bottom:1.5rem;">
+        <button id="toggleCard7Btn" class="add" style="margin-bottom:1.5rem; display:none;">
           Mostrar Tarjeta 7
         </button>
         <article class="card" id="t7" style="display:none;">
@@ -338,52 +334,10 @@
         </article>
 
         <!-- Sección de Videos recomendados -->
-        <section style="margin-top:2.5rem;">
+        <section style="margin-top:2.5rem; display:none;">
           <h2 style="margin-bottom:1.2rem;">Videos recomendados sobre migración y Canadá</h2>
           <div style="display:flex;flex-wrap:wrap;gap:1.2rem;">
-            <div style="width:280px;">
-              <iframe width="280" height="158" src="https://www.youtube.com/embed/25bwiSikRsI?si=lkvCFrcXXb5AbVA5" title="What does it mean to be a refugee" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
-              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">What does it mean to be a refugee?</div>
-            </div>
-            <div style="width:280px;">
-              <iframe width="280" height="158" src="https://www.youtube.com/embed/goS_2Z98c7g?si=g5JgtkcMFLEQ4F07" title="AI Border Control" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
-              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">AI Border Control</div>
-            </div>
-            <div style="width:280px;">
-              <iframe width="280" height="158" src="https://www.youtube.com/embed/2QtNokohvwY" title="EE. UU. vs. Canadá: el divorcio | ARTE.tv Documentary" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
-              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">EE. UU. vs. Canadá: el divorcio | ARTE.tv Documentary</div>
-            </div>
-
-            <div style="width:280px;">
-              <iframe width="280" height="158" src="https://www.youtube.com/embed/lapAm6v5Dgo" title="Skilled newcomers are leaving Canada in record numbers. Here’s why | About That" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
-              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">Skilled newcomers are leaving Canada in record numbers. Here’s why | About That</div>
-            </div>
-
-            <div style="width:280px;">
-              <iframe width="280" height="158" src="https://www.youtube.com/embed/ONjCMzB_FPw" title="This Immigrant Left the U.S. To Seek Asylum In Canada. Here’s Why." frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
-              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">This Immigrant Left the U.S. To Seek Asylum In Canada. Here’s Why.</div>
-            </div>
-            <div style="width:280px;">
-              <iframe width="280" height="158" src="https://www.youtube.com/embed/MHOQxiZ9Eoo" title="Why the closing of the US-Canada border plunged Canadian tourism into crisis" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
-              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">Why the closing of the US-Canada border plunged Canadian tourism into crisis</div>
-            </div>
-            <div style="width:280px;">
-              <iframe width="280" height="158" src="https://www.youtube.com/embed/kRhZdmtw3Wg" title="Canada’s Secret Weapon: America’s Broken Immigration System" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
-              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">Canada’s Secret Weapon: America’s Broken Immigration System</div>
-            </div>
-            <div style="width:280px;">
-              <iframe width="280" height="158" src="https://www.youtube.com/embed/U0qtDjxon7c" title="Why Trudeau is Quietly U-Turning on Immigration" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
-              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">Why Trudeau is Quietly U-Turning on Immigration</div>
-            </div>
-
-            <div style="width:280px;">
-              <iframe width="280" height="158" src="https://www.youtube.com/embed/txyjmNXcWiU" title="Why is anti-immigration sentiment on the rise in Canada? | The National" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
-              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">Why is anti-immigration sentiment on the rise in Canada? | The National</div>
-            </div>
-            <div style="width:280px;">
-              <iframe width="280" height="158" src="https://www.youtube.com/embed/C6nOWE8betQ" title="How The U.S. Lost Thousands Of High-Skilled Workers To Canada" frameborder="0" allowfullscreen style="border-radius:12px;"></iframe>
-              <div style="font-size:.98rem; margin-top:.4rem; font-weight:500;">How The U.S. Lost Thousands Of High-Skilled Workers To Canada</div>
-            </div>
+            <!-- Todos los videos están ocultos temporalmente -->
           </div>
         </section>
       </section>
@@ -391,9 +345,9 @@
       <aside class="col-4">
         <div class="panel">
           <span class="badge">Guía de lectura</span>
-          <h3 style="margin:.5rem 0 0">Migración y Pandemia</h3>
-          <p class="meta"><strong>Referencia:</strong> Macklin, A. (2022). (In)Essential Bordering: Canada, COVID, and Mobility. En A. Triandafyllidou (ed.), <em>Migration and Pandemics</em> (IMISCOE Research Series). Springer.</p>
-          <p class="meta"><strong>Objetivo de clase:</strong> comprender cómo la pandemia reconfiguró las jerarquías de admisibilidad y el control de movilidad dentro y fuera del Estado, y discutir la noción de “esencial”.</p>
+          <h3 style="margin:.5rem 0 0">Gobierno, Gestión de Energía y Recursos Naturales</h3>
+          <p class="meta"><strong>Referencia:</strong> Meadows, D. H., & Wright, D. (2009). Thinking in Systems: A Primer. Earthscan.</p>
+          <p class="meta"><strong>Objetivo de clase:</strong> Analizar la diferencia entre recursos renovables y no renovables desde la perspectiva de la dinámica de sistemas, comprendiendo cómo los bucles de crecimiento y de balance limitan el uso de recursos en un entorno finito, para reflexionar sobre las implicaciones de estos conceptos en la gestión sostenible de la energía y los recursos naturales.</p>
           <p class="meta" style="margin-top:1.5rem;">
             <a href="glosario.html" class="add" style="display:inline-block;margin-top:.5rem;">📖 Glosario de conceptos</a>
           </p>
@@ -407,7 +361,7 @@
       <div class="brand"><span class="stripe"></span>
         <div>Dr. Jorge Cardiel Herrera, Facultad de Contaduría y Administración, 2025, UNAM.</div>
       </div>
-      <div>Colores inspirados en <em>Migration and Pandemics</em> (IMISCOE · Springer).</div>
+     
     </div>
   </footer>
 
