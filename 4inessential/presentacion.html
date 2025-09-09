@@ -309,7 +309,7 @@
     return text.replace(/CBSA/g, `<a href="#" onclick="showCBSAPopup();return false;" style="color:var(--coral);text-decoration:underline;font-weight:700;">CBSA</a>`);
   }
 
-  // Preguntas y ideas clave para las tarjetas 1 a 4 (Recursos renovables y no renovables)
+  // Preguntas y respuestas separadas, una por tarjeta. Se conservan las anteriores y se agregan las nuevas.
   const preguntas = [
     `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
       <li>¿Qué diferencia hay entre un recurso renovable y uno no renovable?</li>
@@ -322,6 +322,31 @@
     </ul>`,
     `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
       <li>¿Qué implicaciones tiene esta distinción para la gestión de energía y recursos naturales hoy?</li>
+    </ul>`,
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>¿Cómo funciona el bucle de refuerzo entre capital y extracción en una economía basada en petróleo?</li>
+    </ul>`,
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>¿Qué papel juega la tasa de reinversión de ganancias en acelerar o retardar el pico de extracción?</li>
+    </ul>`,
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>¿Por qué, según Meadows, el crecimiento exponencial en un sistema finito alcanza rápidamente sus límites?</li>
+    </ul>`,
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>¿Qué alternativas plantea el texto para evitar la caída económica vinculada al agotamiento de recursos no renovables?</li>
+    </ul>`,
+    // Nuevas preguntas agregadas una por tarjeta
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>¿Qué diferencia hay entre un recurso renovable y uno no renovable en términos de dinámica de stock y flujo?</li>
+    </ul>`,
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>¿Cómo ilustra el caso de la pesca las tensiones entre regeneración natural y sobreexplotación?</li>
+    </ul>`,
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>¿Qué patrones de comportamiento emergen cuando se sobreexplota un recurso renovable?</li>
+    </ul>`,
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>¿Qué condiciones permiten un ajuste estable y cuáles llevan al colapso del recurso y de la industria?</li>
     </ul>`
   ];
 
@@ -338,7 +363,37 @@
     </ul>`,
     `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
       <li>Para la gestión contemporánea, esto implica diseñar políticas que reconozcan límites físicos y ecológicos, evitando ilusiones de crecimiento infinito.</li>
-    </ul>`
+    </ul>`,
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>El capital invertido aumenta la extracción, lo que genera ganancias que se reinvierten en más capital, acelerando el ciclo.</li>
+    </ul>`,
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>A mayor reinversión (5%–7%), más rápido se alcanza el pico de extracción; tasas bajas (1%–3%) alargan el proceso.</li>
+    </ul>`,
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>Duplicar o cuadruplicar los recursos solo retrasa marginalmente el colapso: ≈14 años extra por cada duplicación.</li>
+    </ul>`,
+    `<ul style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <li>La estrategia sostenible implica limitar la explotación y, a largo plazo, transitar hacia una economía basada en recursos renovables.</li>
+    </ul>`,
+    // Nuevas ideas clave agregadas una por tarjeta
+    `<div style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <strong>→</strong> Los recursos no renovables son <strong>stock-limited</strong>: cada extracción reduce un stock fijo hasta agotarlo. Los recursos renovables son <strong>flow-limited</strong>: pueden regenerarse, pero solo hasta su tasa máxima de regeneración. Si se extrae más de lo que la naturaleza repone, el recurso deja de comportarse como renovable y puede colapsar.
+    </div>`,
+    `<div style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <strong>→</strong> La pesca ilustra estas tensiones: mientras la población de peces se regenera según la densidad y el hábitat, el crecimiento excesivo de la flota lleva a una extracción superior a la regeneración. Esto provoca la disminución del stock y la pérdida de rentabilidad, mostrando cómo un recurso renovable puede volverse insostenible bajo sobreexplotación.
+    </div>`,
+    `<div style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <strong>→</strong> Los comportamientos típicos que emergen son tres:
+      <ol>
+        <li><strong>Equilibrio sostenible:</strong> cuando la retroalimentación regula a tiempo la extracción.</li>
+        <li><strong>Oscilaciones:</strong> cuando la regulación es débil o tardía y el sistema fluctúa entre sobreexplotación y recuperación parcial.</li>
+        <li><strong>Colapso:</strong> cuando el capital sigue creciendo mientras el recurso cae por debajo de su umbral crítico y pierde su capacidad de regenerarse.</li>
+      </ol>
+    </div>`,
+    `<div style="text-align:left; font-size:1.25rem; margin:0 auto; max-width:700px;">
+      <strong>→</strong> Un ajuste estable ocurre cuando el feedback de balance actúa a tiempo y frena el crecimiento del capital antes de dañar irreversiblemente al recurso. En cambio, si el feedback es débil o llega tarde, el sistema oscila o colapsa. Ni la tecnología ni la eficiencia adicional pueden evitar este desenlace si la extracción supera la capacidad de regeneración.
+    </div>`
   ];
 
   let current = 0;
