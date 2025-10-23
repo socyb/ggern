@@ -3,818 +3,565 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Glosario · Apuntes y Repaso: Sistemas, Recursos y Sostenibilidad</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <title>Glosario · Actividad 9 · Extractivismo Verde</title>
   <style>
-    .glossary-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
+    :root {
+      --green-dark: #065f46;
+      --green: #10b981;
+      --green-light: #6ee7b7;
+      --white: #ffffff;
+      --ink: #1a2636;
+      --gray-light: #f3f4f6;
+      --gray: #9ca3af;
+      --orange: #f97316;
     }
     
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, var(--gray-light) 0%, var(--white) 100%);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    
+    /* Header */
     .glossary-header {
-      text-align: center;
-      margin-bottom: 3rem;
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+      color: var(--white);
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
     }
     
     .glossary-header h1 {
-      font-size: 3rem;
-      color: var(--blue-deep);
-      margin-bottom: 1rem;
+      font-size: 2.5rem;
       font-weight: 900;
+      margin-bottom: 0.5rem;
     }
     
     .glossary-header p {
-      font-size: 1.25rem;
-      color: var(--ink);
-      opacity: 0.8;
+      font-size: 1.125rem;
+      opacity: 0.95;
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-top: 1.5rem;
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--white);
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .back-link:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+    
+    /* Search & Navigation */
+    .search-section {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
     }
     
     .search-box {
-      background: var(--white);
-      padding: 1rem;
-      border-radius: 15px;
-      box-shadow: var(--shadow-md);
-      margin-bottom: 2rem;
-      position: sticky;
-      top: 1rem;
-      z-index: 10;
-    }
-    
-    .search-input {
       width: 100%;
-      padding: 0.875rem 1.25rem;
+      padding: 1rem 1.5rem;
       font-size: 1.125rem;
-      border: 2px solid var(--gray-medium);
+      border: 3px solid var(--green-light);
       border-radius: 50px;
-      font-family: inherit;
-      transition: var(--transition);
+      outline: none;
+      transition: all 0.3s ease;
     }
     
-    .search-input:focus {
-      outline: none;
-      border-color: var(--blue-light);
-      box-shadow: 0 0 0 3px rgba(123, 182, 233, 0.2);
+    .search-box:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
     }
     
     .alphabet-nav {
       display: flex;
-      flex-wrap: wrap;
       gap: 0.5rem;
-      justify-content: center;
-      margin-bottom: 2rem;
-      padding: 1.5rem;
-      background: var(--white);
-      border-radius: 15px;
-      box-shadow: var(--shadow-md);
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
     }
     
-    .alphabet-btn {
-      width: 40px;
-      height: 40px;
-      border: 2px solid var(--gray-medium);
+    .letter-btn {
       background: var(--white);
-      color: var(--ink);
-      border-radius: 50%;
-      font-weight: 700;
+      border: 2px solid var(--green-light);
+      color: var(--green-dark);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
       cursor: pointer;
-      transition: var(--transition);
-      font-size: 1rem;
+      font-weight: 700;
+      transition: all 0.3s ease;
     }
     
-    .alphabet-btn:hover,
-    .alphabet-btn.active {
-      background: var(--blue-deep);
+    .letter-btn:hover,
+    .letter-btn.active {
+      background: var(--green);
       color: var(--white);
-      border-color: var(--blue-deep);
-      transform: scale(1.1);
+      border-color: var(--green);
+      transform: translateY(-2px);
     }
     
-    .glossary-section {
-      margin-bottom: 3rem;
-    }
-    
-    .section-letter {
-      font-size: 3rem;
-      font-weight: 900;
-      color: var(--rose);
-      margin-bottom: 1.5rem;
-      padding-left: 1rem;
-      border-left: 6px solid var(--rose);
+    /* Terms */
+    .terms-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
     }
     
     .term-card {
       background: var(--white);
-      padding: 2rem;
       border-radius: 20px;
-      box-shadow: var(--shadow-md);
+      padding: 2rem;
       margin-bottom: 1.5rem;
-      border-left: 5px solid var(--blue-light);
-      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      border-left: 6px solid var(--green);
+      transition: all 0.3s ease;
     }
     
     .term-card:hover {
-      box-shadow: var(--shadow-xl);
-      transform: translateX(5px);
-      border-left-color: var(--rose);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+      transform: translateY(-3px);
     }
     
-    .term-title {
-      font-size: 1.75rem;
-      color: var(--blue-deep);
-      margin-bottom: 1rem;
-      font-weight: 700;
+    .term-header {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 1rem;
+      margin-bottom: 1rem;
     }
     
     .term-icon {
-      font-size: 1.5rem;
+      font-size: 2rem;
+      background: linear-gradient(135deg, var(--green-light), var(--green));
+      width: 60px;
+      height: 60px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .term-title {
+      flex: 1;
+    }
+    
+    .term-title h3 {
+      font-size: 1.75rem;
+      font-weight: 900;
+      color: var(--green-dark);
+      margin-bottom: 0.25rem;
+    }
+    
+    .term-category {
+      font-size: 0.875rem;
+      color: var(--orange);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
     
     .term-definition {
       font-size: 1.125rem;
       line-height: 1.8;
-      color: var(--ink);
       margin-bottom: 1rem;
+      color: var(--ink);
     }
     
     .term-example {
       background: var(--gray-light);
-      padding: 1.25rem;
-      border-radius: 12px;
-      border-left: 3px solid var(--green);
-      margin-top: 1rem;
-    }
-    
-    .term-example strong {
-      color: var(--green);
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-    
-    .term-related {
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 2px dashed var(--gray-medium);
-    }
-    
-    .term-related strong {
-      color: var(--rose);
-      font-size: 0.95rem;
-      margin-right: 0.5rem;
-    }
-    
-    .related-link {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      background: var(--gray-light);
-      color: var(--blue-deep);
-      border-radius: 20px;
-      margin-right: 0.5rem;
-      margin-bottom: 0.5rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: var(--transition);
-    }
-    
-    .related-link:hover {
-      background: var(--blue-light);
-      color: var(--white);
-    }
-    
-    .no-results {
-      text-align: center;
-      padding: 3rem;
-      background: var(--white);
-      border-radius: 20px;
-      box-shadow: var(--shadow-md);
-    }
-    
-    .no-results-icon {
-      font-size: 4rem;
+      padding: 1rem;
+      border-radius: 10px;
+      border-left: 4px solid var(--green);
+      font-style: italic;
       margin-bottom: 1rem;
     }
     
-    .back-button {
-      display: inline-flex;
-      align-items: center;
+    .term-related {
+      display: flex;
+      flex-wrap: wrap;
       gap: 0.5rem;
-      margin-bottom: 2rem;
+      margin-top: 1rem;
+    }
+    
+    .related-tag {
+      background: var(--green-light);
+      color: var(--ink);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .related-tag:hover {
+      background: var(--green);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+    
+    /* Footer */
+    .glossary-footer {
+      background: var(--green-dark);
+      color: var(--white);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 4rem;
+    }
+    
+    .glossary-footer p {
+      opacity: 0.9;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .glossary-header h1 {
+        font-size: 2rem;
+      }
+      
+      .alphabet-nav {
+        justify-content: center;
+      }
+      
+      .term-card {
+        padding: 1.5rem;
+      }
+      
+      .term-title h3 {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container">
-      <div class="header-content">
-        <div class="header-badge">Glosario</div>
-        <h1 class="header-title">Conceptos Clave</h1>
-        <p class="header-subtitle">Gobierno, Gestión de Energía y Recursos Naturales</p>
-        <div class="header-meta">
-          <span class="professor">👨‍🏫 Dr. Jorge Cardiel Herrera</span>
-          <span class="divider">•</span>
-          <span class="institution">Facultad de Contaduría y Administración, UNAM</span>
-        </div>
-      </div>
+  <div class="glossary-header">
+    <div class="header-content">
+      <h1>📖 Glosario · Actividad 9</h1>
+      <p>Conceptos clave sobre extractivismo verde y el litio en Sudamérica</p>
+      <a href="index.html" class="back-link">← Regresar</a>
     </div>
-  </header>
-
-  <main class="glossary-container">
-    <a href="index.html" class="btn btn-primary back-button">
-      ← Regresar a página principal
-    </a>
-    
-    <!-- Buscador -->
-    <div class="search-box">
-      <input 
-        type="text" 
-        id="searchInput" 
-        class="search-input" 
-        placeholder="🔍 Buscar término o concepto..."
-        autocomplete="off"
-      >
+  </div>
+  
+  <div class="search-section">
+    <input type="text" class="search-box" id="searchBox" placeholder="Buscar término...">
+    <div class="alphabet-nav">
+      <button class="letter-btn" onclick="filterByLetter('all')">Todos</button>
+      <button class="letter-btn" onclick="filterByLetter('A')">A</button>
+      <button class="letter-btn" onclick="filterByLetter('C')">C</button>
+      <button class="letter-btn" onclick="filterByLetter('D')">D</button>
+      <button class="letter-btn" onclick="filterByLetter('E')">E</button>
+      <button class="letter-btn" onclick="filterByLetter('I')">I</button>
+      <button class="letter-btn" onclick="filterByLetter('L')">L</button>
+      <button class="letter-btn" onclick="filterByLetter('S')">S</button>
+      <button class="letter-btn" onclick="filterByLetter('T')">T</button>
     </div>
+  </div>
+  
+  <div class="terms-container" id="termsContainer">
     
-    <!-- Navegación alfabética -->
-    <div class="alphabet-nav" id="alphabetNav">
-      <button class="alphabet-btn" data-letter="all">Todos</button>
-    </div>
-    
-    <!-- Glosario -->
-    <div id="glossaryContent">
-      
-      <!-- Sección B -->
-      <div class="glossary-section" data-letter="B">
-        <h2 class="section-letter">B</h2>
-        
-        <div class="term-card">
-          <h3 class="term-title">
-            <span class="term-icon">🔄</span>
-            Bucle de Refuerzo
-          </h3>
-          <p class="term-definition">
-            Un bucle de retroalimentación que amplifica el cambio en una dirección, ya sea crecimiento o declive. 
-            También conocido como bucle positivo o de amplificación, este mecanismo acelera los procesos en un sistema.
-          </p>
-          <div class="term-example">
-            <strong>💡 Ejemplo:</strong>
-            En una economía petrolera: más capital → más capacidad de extracción → más ganancias → 
-            más capital disponible para reinvertir. Este ciclo se retroalimenta y acelera el crecimiento.
-          </div>
-          <div class="term-related">
-            <strong>🔗 Relacionado con:</strong>
-            <a href="#bucle-balanceo" class="related-link">Bucle de Balanceo</a>
-            <a href="#crecimiento-exponencial" class="related-link">Crecimiento Exponencial</a>
-            <a href="#retroalimentacion" class="related-link">Retroalimentación</a>
-          </div>
-        </div>
-        
-        <div class="term-card">
-          <h3 class="term-title">
-            <span class="term-icon">⚖️</span>
-            Bucle de Balanceo
-          </h3>
-          <p class="term-definition">
-            Un bucle de retroalimentación que contrarresta el cambio y busca estabilidad o equilibrio. 
-            También llamado bucle negativo o estabilizador, actúa como freno natural en los sistemas, 
-            limitando el crecimiento exponencial y previniendo el colapso.
-          </p>
-          <div class="term-example">
-            <strong>💡 Ejemplo:</strong>
-            La regulación de temperatura corporal: cuando aumenta la temperatura, el cuerpo suda para enfriar; 
-            cuando disminuye, tirita para generar calor. Este mecanismo busca mantener el equilibrio en 37°C.
-          </div>
-          <div class="term-related">
-            <strong>🔗 Relacionado con:</strong>
-            <a href="#bucle-refuerzo" class="related-link">Bucle de Refuerzo</a>
-            <a href="#equilibrio" class="related-link">Equilibrio</a>
-            <a href="#limites-crecimiento" class="related-link">Límites al Crecimiento</a>
-          </div>
+    <!-- Ambientalismo Estratégico -->
+    <div class="term-card" data-term="ambientalismo estratégico" data-letter="A">
+      <div class="term-header">
+        <div class="term-icon">🌿</div>
+        <div class="term-title">
+          <h3>Ambientalismo Estratégico</h3>
+          <span class="term-category">Discurso político</span>
         </div>
       </div>
-      
-      <!-- Sección C -->
-      <div class="glossary-section" data-letter="C">
-        <h2 class="section-letter">C</h2>
-        
-        <div class="term-card">
-          <h3 class="term-title">
-            <span class="term-icon">📈</span>
-            Crecimiento Exponencial
-          </h3>
-          <p class="term-definition">
-            Patrón de crecimiento donde una cantidad aumenta a una tasa proporcional a su valor actual, 
-            resultando en un incremento acelerado. Característico de sistemas con bucles de refuerzo dominantes.
-          </p>
-          <div class="term-example">
-            <strong>💡 Ejemplo:</strong>
-            Una población bacteriana que se duplica cada hora: 1 → 2 → 4 → 8 → 16 → 32... 
-            En solo 10 horas pasaría de 1 a 1,024 bacterias.
-          </div>
-          <div class="term-related">
-            <strong>🔗 Relacionado con:</strong>
-            <a href="#bucle-refuerzo" class="related-link">Bucle de Refuerzo</a>
-            <a href="#limites-crecimiento" class="related-link">Límites al Crecimiento</a>
-            <a href="#overshoot" class="related-link">Overshoot</a>
-          </div>
-        </div>
-        
-        <div class="term-card">
-          <h3 class="term-title">
-            <span class="term-icon">♻️</span>
-            Capacidad de Carga
-          </h3>
-          <p class="term-definition">
-            La población máxima de una especie que un ambiente puede sostener indefinidamente, 
-            dadas las condiciones de alimento, hábitat, agua y otros recursos disponibles. 
-            Cuando se supera, el sistema colapsa.
-          </p>
-          <div class="term-example">
-            <strong>💡 Ejemplo:</strong>
-            Un lago puede sostener 1000 peces si hay suficiente alimento y oxígeno. Si se introducen 2000 peces, 
-            el ecosistema se degrada y eventualmente colapsa por falta de recursos.
-          </div>
-          <div class="term-related">
-            <strong>🔗 Relacionado con:</strong>
-            <a href="#overshoot" class="related-link">Overshoot</a>
-            <a href="#sostenibilidad" class="related-link">Sostenibilidad</a>
-            <a href="#colapso" class="related-link">Colapso</a>
-          </div>
-        </div>
-        
-        <div class="term-card">
-          <h3 class="term-title">
-            <span class="term-icon">💥</span>
-            Colapso
-          </h3>
-          <p class="term-definition">
-            Reducción rápida y significativa en la población, complejidad o funcionalidad de un sistema. 
-            Ocurre cuando los bucles de balanceo no logran controlar el crecimiento exponencial antes de 
-            alcanzar límites críticos.
-          </p>
-          <div class="term-example">
-            <strong>💡 Ejemplo:</strong>
-            El colapso de las pesquerías de bacalao en Terranova (1992): décadas de sobrepesca agotaron 
-            el stock más allá de su capacidad de recuperación, causando un colapso ecológico y económico.
-          </div>
-          <div class="term-related">
-            <strong>🔗 Relacionado con:</strong>
-            <a href="#overshoot" class="related-link">Overshoot</a>
-            <a href="#sobreexplotacion" class="related-link">Sobreexplotación</a>
-            <a href="#limites-crecimiento" class="related-link">Límites al Crecimiento</a>
-          </div>
-        </div>
+      <div class="term-definition">
+        Discurso que justifica la extracción de litio bajo el argumento de que los autos eléctricos contribuyen a combatir el cambio climático. Presenta la minería como parte de la solución ambiental, ocultando sus impactos locales.
       </div>
-      
-      <!-- Sección E -->
-      <div class="glossary-section" data-letter="E">
-        <h2 class="section-letter">E</h2>
-        
-        <div class="term-card">
-          <h3 class="term-title">
-            <span class="term-icon">⚖️</span>
-            Equilibrio
-          </h3>
-          <p class="term-definition">
-            Estado en el cual las fuerzas opuestas de un sistema están balanceadas, 
-            resultando en un comportamiento estable. Puede ser estático (sin cambio) o dinámico (fluctuaciones controladas).
-          </p>
-          <div class="term-example">
-            <strong>💡 Ejemplo:</strong>
-            Un bosque maduro en equilibrio: los árboles que mueren son reemplazados por nuevos árboles 
-            a la misma tasa, manteniendo una población estable.
-          </div>
-          <div class="term-related">
-            <strong>🔗 Relacionado con:</strong>
-            <a href="#bucle-balanceo" class="related-link">Bucle de Balanceo</a>
-            <a href="#sostenibilidad" class="related-link">Sostenibilidad</a>
-          </div>
-        </div>
-        
-        <div class="term-card">
-          <h3 class="term-title">
-            <span class="term-icon">🌿</span>
-            Economía Circular
-          </h3>
-          <p class="term-definition">
-            Modelo económico que busca minimizar desperdicios y maximizar la reutilización de recursos, 
-            cerrando ciclos de materiales y energía. Contrasta con el modelo lineal de "extraer-producir-desechar".
-          </p>
-          <div class="term-example">
-            <strong>💡 Ejemplo:</strong>
-            Empresas que diseñan productos para ser totalmente reciclables, donde los componentes al final 
-            de su vida útil se convierten en materia prima para nuevos productos.
-          </div>
-          <div class="term-related">
-            <strong>🔗 Relacionado con:</strong>
-            <a href="#sostenibilidad" class="related-link">Sostenibilidad</a>
-            <a href="#recursos-renovables" class="related-link">Recursos Renovables</a>
-          </div>
-        </div>
+      <div class="term-example">
+        "Extraer litio es responsabilidad global: es contribuir a que el planeta tenga menos contaminación" — narrativa recurrente de gobiernos.
       </div>
-      
-      <!-- Sección F -->
-      <div class="glossary-section" data-letter="F">
-        <h2 class="section-letter">F</h2>
-        
-        <div class="term-card">
-          <h3 class="term-title">
-            <span class="term-icon">💧</span>
-            Flow-Limited (Limitado por Flujo)
-          </h3>
-          <p class="term-definition">
-            Característica de recursos renovables que están limitados por su tasa de regeneración natural 
-            (flujo), no por su cantidad total. La sostenibilidad depende de no exceder esta tasa de regeneración.
-          </p>
-          <div class="term-example">
-            <strong>💡 Ejemplo:</strong>
-            Un bosque puede producir X toneladas de madera al año mediante crecimiento natural. 
-            Si se cosecha más de X toneladas, se está agotando el stock y degradando el sistema.
-          </div>
-          <div class="term-related">
-            <strong>🔗 Relacionado con:</strong>
-            <a href="#recursos-renovables" class="related-link">Recursos Renovables</a>
-            <a href="#stock-limited" class="related-link">Stock-Limited</a>
-            <a href="#sostenibilidad" class="related-link">Sostenibilidad</a>
-          </div>
-        </div>
+      <div class="term-related">
+        <a href="#" class="related-tag">Extractivismo Verde</a>
+        <a href="#" class="related-tag">Discursos de Legitimación</a>
       </div>
-      
-      <!-- Sección L -->
-      <div class="glossary-section" data-letter="L">
-        <h2 class="section-letter">L</h2>
-        
-        <div class="term-card">
-          <h3 class="term-title">
-            <span class="term-icon">🚧</span>
-            Límites al Crecimiento
-          </h3>
-          <p class="term-definition">
-            Restricciones físicas, ecológicas, económicas o sociales que impiden el crecimiento exponencial 
-            indefinido de cualquier sistema. Concepto central del informe del Club de Roma (1972) y de 
-            Donella Meadows en "Thinking in Systems".
-          </p>
-          <div class="term-example">
-            <strong>💡 Ejemplo:</strong>
-            Un planeta finito tiene límites en recursos, espacio y capacidad de absorber contaminación. 
-            Ninguna economía puede crecer exponencialmente para siempre sin chocar con estos límites.
-          </div>
-          <div class="term-related">
-            <strong>🔗 Relacionado con:</strong>
-            <a href="#bucle-balanceo" class="related-link">Bucle de Balanceo</a>
-            <a href="#overshoot" class="related-link">Overshoot</a>
-            <a href="#sostenibilidad" class="related-link">Sostenibilidad</a>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Sección O -->
-      <div class="glossary-section" data-letter="O">
-        <h2 class="section-letter">O</h2>
-        
-        <div class="term-card">
-          <h3 class="term-title">
-            <span class="term-icon">📊</span>
-            Overshoot (Sobreimpulso)
-          </h3>
-          <p class="term-definition">
-            Cuando un sistema supera su capacidad de carga o límites sostenibles, usualmente porque los 
-            bucles de retroalimentación actúan con retardo. Puede resultar en oscilaciones o colapso total.
-          </p>
-          <div class="term-example">
-            <strong>💡 Ejemplo:</strong>
-            Una población de ciervos crece más allá de la capacidad del bosque para alimentarlos. 
-            Eventualmente, el bosque se degrada y la población colapsa por hambruna.
-          </div>
-          <div class="term-related">
-            <strong>🔗 Relacionado con:</strong>
-            <a href="#capacidad-carga" class="related-link">Capacidad de Carga</a>
-            <a href="#colapso" class="related-link">Colapso</a>
-            <a href="#sobreexplotacion" class="related-link">Sobreexplotación</a>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Sección P -->
-      <div class="glossary-section" data-letter="P">
-        <h2 class="section-letter">P</h2>
-        
-        <div class="term-card">
-          <h3 class="term-title">
-            <span class="term-icon">🧠</span>
-            Pensamiento Sistémico
-          </h3>
-          <p class="term-definition">
-            Enfoque holístico para comprender la complejidad mediante el análisis de las interconexiones, 
-            bucles de retroalimentación, retrasos temporales y patrones de comportamiento en sistemas dinámicos. 
-            Desarrollado por teóricos como Jay Forrester, Donella Meadows y Peter Senge.
-          </p>
-          <div class="term-example">
-            <strong>💡 Ejemplo:</strong>
-            En lugar de ver el cambio climático como problema aislado, el pensamiento sistémico lo analiza 
-            como resultado de interacciones entre sistemas energéticos, económicos, sociales y ecológicos.
-          </div>
-          <div class="term-related">
-            <strong>🔗 Relacionado con:</strong>
-            <a href="#retroalimentacion" class="related-link">Retroalimentación</a>
-            <a href="#bucle-refuerzo" class="related-link">Bucle de Refuerzo</a>
-            <a href="#bucle-balanceo" class="related-link">Bucle de Balanceo</a>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Sección R -->
-      <div class="glossary-section" data-letter="R">
-        <h2 class="section-letter">R</h2>
-        
-        <div class="term-card">
-          <h3 class="term-title">
-            <span class="term-icon">🔁</span>
-            Retroalimentación (Feedback)
-          </h3>
-          <p class="term-definition">
-            Mecanismo mediante el cual el resultado de un proceso influye en su propia causa, 
-            creando bucles circulares. Puede ser positiva (reforzar) o negativa (balancear).
-          </p>
-          <div class="term-example">
-            <strong>💡 Ejemplo:</strong>
-            El derretimiento del hielo ártico (retroalimentación positiva): menos hielo → menos reflejo de luz solar 
-            → más calor absorbido → más derretimiento → menos hielo...
-          </div>
-          <div class="term-related">
-            <strong>🔗 Relacionado con:</strong>
-            <a href="#bucle-refuerzo" class="related-link">Bucle de Refuerzo</a>
-            <a href="#bucle-balanceo" class="related-link">Bucle de Balanceo</a>
-            <a href="#pensamiento-sistemico" class="related-link">Pensamiento Sistémico</a>
-          </div>
-        </div>
-        
-        <div class="term-card">
-          <h3 class="term-title">
-            <span class="term-icon">🌱</span>
-            Recursos Renovables
-          </h3>
-          <p class="term-definition">
-            Recursos naturales que pueden regenerarse a través de procesos naturales en un período relativamente 
-            corto. Son flow-limited, limitados por su tasa de regeneración, no por cantidad total.
-          </p>
-          <div class="term-example">
-            <strong>💡 Ejemplo:</strong>
-            Bosques, pesca, energía solar, eólica, biomasa. Un bosque puede proporcionar madera indefinidamente 
-            si se cosecha a una tasa igual o menor que su crecimiento natural.
-          </div>
-          <div class="term-related">
-            <strong>🔗 Relacionado con:</strong>
-            <a href="#flow-limited" class="related-link">Flow-Limited</a>
-            <a href="#recursos-no-renovables" class="related-link">Recursos No Renovables</a>
-            <a href="#sostenibilidad" class="related-link">Sostenibilidad</a>
-          </div>
-        </div>
-        
-        <div class="term-card">
-          <h3 class="term-title">
-            <span class="term-icon">🛢️</span>
-            Recursos No Renovables
-          </h3>
-          <p class="term-definition">
-            Recursos naturales que existen en cantidades fijas y no se regeneran a escala humana. 
-            Son stock-limited, limitados por su cantidad total disponible, y eventualmente se agotan con el uso.
-          </p>
-          <div class="term-example">
-            <strong>💡 Ejemplo:</strong>
-            Petróleo, gas natural, carbón, minerales metálicos, uranio. Una vez extraídos y consumidos, 
-            no hay forma práctica de reponer estos recursos en escalas de tiempo humanas.
-          </div>
-          <div class="term-related">
-            <strong>🔗 Relacionado con:</strong>
-            <a href="#stock-limited" class="related-link">Stock-Limited</a>
-            <a href="#recursos-renovables" class="related-link">Recursos Renovables</a>
-            <a href="#pico-petroleo" class="related-link">Pico del Petróleo</a>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Sección S -->
-      <div class="glossary-section" data-letter="S">
-        <h2 class="section-letter">S</h2>
-        
-        <div class="term-card">
-          <h3 class="term-title">
-            <span class="term-icon">🌍</span>
-            Sostenibilidad
-          </h3>
-          <p class="term-definition">
-            Capacidad de satisfacer las necesidades del presente sin comprometer la capacidad de futuras 
-            generaciones para satisfacer sus propias necesidades. Requiere equilibrio entre sistemas 
-            económicos, sociales y ambientales.
-          </p>
-          <div class="term-example">
-            <strong>💡 Ejemplo:</strong>
-            Una pesquería sostenible captura solo lo que el océano puede regenerar naturalmente, 
-            asegurando que habrá peces tanto para hoy como para las generaciones futuras.
-          </div>
-          <div class="term-related">
-            <strong>🔗 Relacionado con:</strong>
-            <a href="#equilibrio" class="related-link">Equilibrio</a>
-            <a href="#capacidad-carga" class="related-link">Capacidad de Carga</a>
-            <a href="#limites-crecimiento" class="related-link">Límites al Crecimiento</a>
-          </div>
-        </div>
-        
-        <div class="term-card">
-          <h3 class="term-title">
-            <span class="term-icon">⚠️</span>
-            Sobreexplotación
-          </h3>
-          <p class="term-definition">
-            Uso de un recurso renovable a una tasa que excede su capacidad de regeneración, 
-            resultando en degradación del stock y eventualmente colapso del sistema.
-          </p>
-          <div class="term-example">
-            <strong>💡 Ejemplo:</strong>
-            La deforestación de la Amazonía donde se tala más rápido de lo que el bosque puede regenerarse, 
-            llevando a pérdida permanente de biodiversidad y servicios ecosistémicos.
-          </div>
-          <div class="term-related">
-            <strong>🔗 Relacionado con:</strong>
-            <a href="#overshoot" class="related-link">Overshoot</a>
-            <a href="#colapso" class="related-link">Colapso</a>
-            <a href="#recursos-renovables" class="related-link">Recursos Renovables</a>
-          </div>
-        </div>
-        
-        <div class="term-card">
-          <h3 class="term-title">
-            <span class="term-icon">📦</span>
-            Stock-Limited (Limitado por Stock)
-          </h3>
-          <p class="term-definition">
-            Característica de recursos no renovables que están limitados por su cantidad total disponible, 
-            no por su tasa de extracción. Una vez agotado el stock, el recurso deja de estar disponible.
-          </p>
-          <div class="term-example">
-            <strong>💡 Ejemplo:</strong>
-            Un yacimiento de petróleo contiene X barriles. No importa cuán rápido o lento se extraiga, 
-            eventualmente se agotará cuando se hayan extraído todos los X barriles.
-          </div>
-          <div class="term-related">
-            <strong>🔗 Relacionado con:</strong>
-            <a href="#recursos-no-renovables" class="related-link">Recursos No Renovables</a>
-            <a href="#flow-limited" class="related-link">Flow-Limited</a>
-            <a href="#pico-petroleo" class="related-link">Pico del Petróleo</a>
-          </div>
-        </div>
-      </div>
-      
     </div>
     
-    <div id="noResults" class="no-results" style="display: none;">
-      <div class="no-results-icon">🔍</div>
-      <h3>No se encontraron resultados</h3>
-      <p>Intenta con otro término de búsqueda</p>
-    </div>
-    
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-left">
-          <p class="footer-name">Dr. Jorge Cardiel Herrera</p>
-          <p class="footer-date">Octubre 22, 2025</p>
-        </div>
-        <div class="footer-right">
-          <p>Gobierno, Gestión de Energía y Recursos Naturales</p>
-          <p>Facultad de Contaduría y Administración, UNAM</p>
+    <!-- Contra-discursos -->
+    <div class="term-card" data-term="contra-discursos" data-letter="C">
+      <div class="term-header">
+        <div class="term-icon">✊</div>
+        <div class="term-title">
+          <h3>Contra-discursos</h3>
+          <span class="term-category">Resistencia social</span>
         </div>
       </div>
+      <div class="term-definition">
+        Narrativas de comunidades indígenas y campesinas que desafían el discurso oficial del desarrollo. Resignifican los salares como territorios de vida, no zonas de sacrificio. Expresiones como "el agua vale más que el litio" y "no comemos baterías".
+      </div>
+      <div class="term-example">
+        En Salinas Grandes, Argentina, las comunidades rechazan proyectos mineros y reclaman consulta previa, libre e informada.
+      </div>
+      <div class="term-related">
+        <a href="#" class="related-tag">Triángulo del Litio</a>
+        <a href="#" class="related-tag">Territorios de Vida</a>
+      </div>
     </div>
-  </footer>
-
+    
+    <!-- Desarrollo -->
+    <div class="term-card" data-term="desarrollo y modernización" data-letter="D">
+      <div class="term-header">
+        <div class="term-icon">🏗️</div>
+        <div class="term-title">
+          <h3>Desarrollo y Modernización</h3>
+          <span class="term-category">Discurso político</span>
+        </div>
+      </div>
+      <div class="term-definition">
+        Uno de los discursos centrales de legitimación: promete industrialización, tecnología nacional, empleos y liderazgo en la transición energética. Se presenta al litio como "ventana de oportunidad" que no debe perderse.
+      </div>
+      <div class="term-example">
+        Bolivia planteó una política de industrialización completa: desde la salmuera hasta baterías de ion-litio y autos eléctricos.
+      </div>
+      <div class="term-related">
+        <a href="#" class="related-tag">Imaginarios del Progreso</a>
+        <a href="#" class="related-tag">Soberanía Nacional</a>
+      </div>
+    </div>
+    
+    <!-- Extractivismo Verde -->
+    <div class="term-card" data-term="extractivismo verde" data-letter="E">
+      <div class="term-header">
+        <div class="term-icon">⚙️</div>
+        <div class="term-title">
+          <h3>Extractivismo Verde</h3>
+          <span class="term-category">Concepto clave</span>
+        </div>
+      </div>
+      <div class="term-definition">
+        Nueva fase del capitalismo extractivo que utiliza el lenguaje de la sostenibilidad y la transición energética para justificar la extracción masiva de recursos naturales. Recicla viejas narrativas desarrollistas bajo un barniz ecológico.
+      </div>
+      <div class="term-example">
+        Extracción de litio para autos eléctricos en zonas desérticas con escasez hídrica, presentada como "minería limpia".
+      </div>
+      <div class="term-related">
+        <a href="#" class="related-tag">Transición Energética</a>
+        <a href="#" class="related-tag">Discursos de Legitimación</a>
+      </div>
+    </div>
+    
+    <!-- Imaginarios del Progreso -->
+    <div class="term-card" data-term="imaginarios del progreso" data-letter="I">
+      <div class="term-header">
+        <div class="term-icon">💡</div>
+        <div class="term-title">
+          <h3>Imaginarios del Progreso</h3>
+          <span class="term-category">Narrativa simbólica</span>
+        </div>
+      </div>
+      <div class="term-definition">
+        Figuras discursivas que naturalizan la extracción como destino nacional: "oro blanco", "petróleo del siglo XXI", "banco del siglo XXI". Operan como símbolos de abundancia y modernidad que ocultan despojos territoriales.
+      </div>
+      <div class="term-example">
+        García Linera (Bolivia): "Los salares son el banco del siglo XXI". Bachelet y Macri: "El litio es el petróleo del futuro".
+      </div>
+      <div class="term-related">
+        <a href="#" class="related-tag">Discursos de Legitimación</a>
+        <a href="#" class="related-tag">Soberanía Nacional</a>
+      </div>
+    </div>
+    
+    <!-- Litio -->
+    <div class="term-card" data-term="litio" data-letter="L">
+      <div class="term-header">
+        <div class="term-icon">🔋</div>
+        <div class="term-title">
+          <h3>Litio</h3>
+          <span class="term-category">Recurso natural</span>
+        </div>
+      </div>
+      <div class="term-definition">
+        Elemento químico esencial para las baterías de ion-litio usadas en autos eléctricos, smartphones y almacenamiento energético. Sudamérica concentra más de la mitad de las reservas mundiales en salares del Triángulo del Litio.
+      </div>
+      <div class="term-example">
+        Extraer una tonelada de litio requiere evaporar aproximadamente 2 millones de litros de agua en zonas donde el recurso hídrico es crítico.
+      </div>
+      <div class="term-related">
+        <a href="#" class="related-tag">Triángulo del Litio</a>
+        <a href="#" class="related-tag">Extractivismo Verde</a>
+      </div>
+    </div>
+    
+    <!-- Soberanía Nacional -->
+    <div class="term-card" data-term="soberanía nacional" data-letter="S">
+      <div class="term-header">
+        <div class="term-icon">🇦🇷</div>
+        <div class="term-title">
+          <h3>Soberanía Nacional</h3>
+          <span class="term-category">Discurso político</span>
+        </div>
+      </div>
+      <div class="term-definition">
+        Argumento que presenta la explotación del litio como ejercicio de autonomía económica, orgullo patriótico y control sobre recursos estratégicos. Promete dejar atrás dependencia histórica de otros commodities.
+      </div>
+      <div class="term-example">
+        Bolivia intentó desarrollar una cadena productiva completa nacional, pero enfrentó dependencia tecnológica y falta de inversión.
+      </div>
+      <div class="term-related">
+        <a href="#" class="related-tag">Desarrollo y Modernización</a>
+        <a href="#" class="related-tag">Imaginarios del Progreso</a>
+      </div>
+    </div>
+    
+    <!-- Territorios de Vida -->
+    <div class="term-card" data-term="territorios de vida" data-letter="T">
+      <div class="term-header">
+        <div class="term-icon">🏞️</div>
+        <div class="term-title">
+          <h3>Territorios de Vida</h3>
+          <span class="term-category">Resistencia social</span>
+        </div>
+      </div>
+      <div class="term-definition">
+        Concepto de comunidades indígenas que opone el discurso extractivo: los salares no son "recursos desaprovechados" sino ecosistemas con valor intrínseco, fuente de agua, biodiversidad y prácticas culturales ancestrales.
+      </div>
+      <div class="term-example">
+        En Salinas Grandes, comunidades kollas reivindican sus salares como espacios sagrados y fuentes de subsistencia, no zonas mineras.
+      </div>
+      <div class="term-related">
+        <a href="#" class="related-tag">Contra-discursos</a>
+        <a href="#" class="related-tag">Triángulo del Litio</a>
+      </div>
+    </div>
+    
+    <!-- Transición Energética -->
+    <div class="term-card" data-term="transición energética" data-letter="T">
+      <div class="term-header">
+        <div class="term-icon">⚡</div>
+        <div class="term-title">
+          <h3>Transición Energética</h3>
+          <span class="term-category">Contexto global</span>
+        </div>
+      </div>
+      <div class="term-definition">
+        Proceso global de reemplazo de combustibles fósiles por energías renovables y movilidad eléctrica. Genera nueva demanda de minerales como litio, cobalto, cobre. Puede reproducir injusticias extractivas bajo lenguaje verde.
+      </div>
+      <div class="term-example">
+        Países del Norte impulsan autos eléctricos mientras delegan a países del Sur los costos socioambientales de la extracción minera.
+      </div>
+      <div class="term-related">
+        <a href="#" class="related-tag">Extractivismo Verde</a>
+        <a href="#" class="related-tag">Ambientalismo Estratégico</a>
+      </div>
+    </div>
+    
+    <!-- Triángulo del Litio -->
+    <div class="term-card" data-term="triángulo del litio" data-letter="T">
+      <div class="term-header">
+        <div class="term-icon">📍</div>
+        <div class="term-title">
+          <h3>Triángulo del Litio</h3>
+          <span class="term-category">Geografía</span>
+        </div>
+      </div>
+      <div class="term-definition">
+        Región conformada por Bolivia (Salar de Uyuni), Chile (Salar de Atacama) y Argentina (Salinas Grandes, otros). Concentra más del 50% de las reservas mundiales de litio. Zona de intensa disputa territorial, económica y simbólica.
+      </div>
+      <div class="term-example">
+        El Salar de Uyuni en Bolivia es el mayor depósito de litio del planeta, pero su explotación ha sido limitada por conflictos políticos y técnicos.
+      </div>
+      <div class="term-related">
+        <a href="#" class="related-tag">Litio</a>
+        <a href="#" class="related-tag">Extractivismo Verde</a>
+      </div>
+    </div>
+    
+    <!-- Discursos de Legitimación -->
+    <div class="term-card" data-term="discursos de legitimación" data-letter="D">
+      <div class="term-header">
+        <div class="term-icon">📣</div>
+        <div class="term-title">
+          <h3>Discursos de Legitimación</h3>
+          <span class="term-category">Concepto clave</span>
+        </div>
+      </div>
+      <div class="term-definition">
+        Conjunto de narrativas que naturalizan y justifican la extracción de litio: desarrollo/modernización, soberanía nacional, ambientalismo estratégico. Operan mediante persuasión, no coerción, construyendo consenso social en torno al extractivismo.
+      </div>
+      <div class="term-example">
+        Gobiernos de diferentes signos políticos (Evo Morales, Bachelet, Macri) utilizan lenguajes similares para legitimar proyectos mineros.
+      </div>
+      <div class="term-related">
+        <a href="#" class="related-tag">Extractivismo Verde</a>
+        <a href="#" class="related-tag">Imaginarios del Progreso</a>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="glossary-footer">
+    <p>Dr. Jorge Cardiel Herrera · Gobierno, Gestión de Energía y Recursos Naturales</p>
+    <p>Octubre 22, 2025 · FCA, UNAM</p>
+  </div>
+  
   <script>
     // Búsqueda en tiempo real
-    const searchInput = document.getElementById('searchInput');
-    const glossaryContent = document.getElementById('glossaryContent');
-    const noResults = document.getElementById('noResults');
-    const sections = document.querySelectorAll('.glossary-section');
+    const searchBox = document.getElementById('searchBox');
     const termCards = document.querySelectorAll('.term-card');
     
-    searchInput.addEventListener('input', function() {
-      const searchTerm = this.value.toLowerCase().trim();
-      let hasResults = false;
+    searchBox.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
       
-      if (searchTerm === '') {
-        // Mostrar todo
-        sections.forEach(section => section.style.display = 'block');
-        termCards.forEach(card => card.style.display = 'block');
-        noResults.style.display = 'none';
-        return;
-      }
-      
-      // Buscar en términos
       termCards.forEach(card => {
-        const title = card.querySelector('.term-title').textContent.toLowerCase();
-        const definition = card.querySelector('.term-definition').textContent.toLowerCase();
-        const example = card.querySelector('.term-example') ? 
-          card.querySelector('.term-example').textContent.toLowerCase() : '';
+        const term = card.getAttribute('data-term');
+        const content = card.textContent.toLowerCase();
         
-        if (title.includes(searchTerm) || definition.includes(searchTerm) || example.includes(searchTerm)) {
+        if (content.includes(searchTerm)) {
           card.style.display = 'block';
-          hasResults = true;
         } else {
           card.style.display = 'none';
         }
       });
-      
-      // Mostrar/ocultar secciones según resultados
-      sections.forEach(section => {
-        const visibleCards = section.querySelectorAll('.term-card[style="display: block;"]');
-        if (visibleCards.length > 0) {
-          section.style.display = 'block';
-        } else {
-          section.style.display = 'none';
-        }
+    });
+    
+    // Filtrado por letra
+    function filterByLetter(letter) {
+      // Activar botón
+      document.querySelectorAll('.letter-btn').forEach(btn => {
+        btn.classList.remove('active');
       });
+      event.target.classList.add('active');
       
-      // Mostrar mensaje si no hay resultados
-      noResults.style.display = hasResults ? 'none' : 'block';
-      glossaryContent.style.display = hasResults ? 'block' : 'none';
-    });
-    
-    // Generar navegación alfabética
-    const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
-                     'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-    const alphabetNav = document.getElementById('alphabetNav');
-    const availableLetters = new Set();
-    
-    sections.forEach(section => {
-      const letter = section.getAttribute('data-letter');
-      if (letter) availableLetters.add(letter);
-    });
-    
-    letters.forEach(letter => {
-      if (availableLetters.has(letter)) {
-        const btn = document.createElement('button');
-        btn.className = 'alphabet-btn';
-        btn.textContent = letter;
-        btn.setAttribute('data-letter', letter);
-        alphabetNav.appendChild(btn);
-      }
-    });
-    
-    // Navegación por letra
-    alphabetNav.addEventListener('click', function(e) {
-      if (e.target.classList.contains('alphabet-btn')) {
-        const letter = e.target.getAttribute('data-letter');
-        
-        // Remover active de todos
-        document.querySelectorAll('.alphabet-btn').forEach(btn => {
-          btn.classList.remove('active');
+      // Filtrar términos
+      if (letter === 'all') {
+        termCards.forEach(card => {
+          card.style.display = 'block';
         });
-        
-        // Añadir active al clickeado
-        e.target.classList.add('active');
-        
-        if (letter === 'all') {
-          sections.forEach(section => section.style.display = 'block');
-        } else {
-          sections.forEach(section => {
-            if (section.getAttribute('data-letter') === letter) {
-              section.style.display = 'block';
-              section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } else {
-              section.style.display = 'none';
-            }
-          });
-        }
-        
-        searchInput.value = '';
+      } else {
+        termCards.forEach(card => {
+          const cardLetter = card.getAttribute('data-letter');
+          if (cardLetter === letter) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
       }
-    });
-    
-    // Smooth scroll para links relacionados
-    document.querySelectorAll('.related-link').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        const targetCard = document.querySelector(`[id="${targetId}"]`);
-        
-        if (targetCard) {
-          targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          targetCard.style.animation = 'none';
-          setTimeout(() => {
-            targetCard.style.animation = 'pulse 0.5s ease-in-out';
-          }, 10);
-        }
-      });
-    });
-    
-    console.log('📚 Glosario interactivo cargado correctamente');
+      
+      // Limpiar búsqueda
+      searchBox.value = '';
+    }
   </script>
 </body>
 </html>

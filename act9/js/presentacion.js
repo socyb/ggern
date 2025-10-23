@@ -1,52 +1,33 @@
-// ==========================================================================
-// Control de Presentación
-// ==========================================================================
-
+// Presentación interactiva - Act10
 let currentSlideIndex = 0;
 const slides = document.querySelectorAll('.slide');
 const totalSlides = slides.length;
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const currentSlideDisplay = document.getElementById('currentSlide');
+const totalSlidesDisplay = document.getElementById('totalSlides');
 
-// Actualizar contador
-document.getElementById('totalSlides').textContent = totalSlides;
+// Inicializar
+totalSlidesDisplay.textContent = totalSlides;
+updateSlideDisplay();
 
-// Función para mostrar diapositiva
 function showSlide(index) {
-  // Ocultar todas las diapositivas
-  slides.forEach(slide => {
+  slides.forEach((slide, i) => {
     slide.classList.remove('active');
+    if (i === index) {
+      slide.classList.add('active');
+    }
   });
   
-  // Mostrar diapositiva actual
-  slides[index].classList.add('active');
-  
-  // Actualizar contador
-  document.getElementById('currentSlide').textContent = index + 1;
-  
-  // Actualizar estado de botones
+  currentSlideDisplay.textContent = index + 1;
   updateButtons();
 }
 
-// Función para actualizar botones
 function updateButtons() {
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  
-  // Deshabilitar botón anterior en primera diapositiva
-  if (currentSlideIndex === 0) {
-    prevBtn.disabled = true;
-  } else {
-    prevBtn.disabled = false;
-  }
-  
-  // Deshabilitar botón siguiente en última diapositiva
-  if (currentSlideIndex === totalSlides - 1) {
-    nextBtn.disabled = true;
-  } else {
-    nextBtn.disabled = false;
-  }
+  prevBtn.disabled = currentSlideIndex === 0;
+  nextBtn.disabled = currentSlideIndex === totalSlides - 1;
 }
 
-// Navegar a siguiente diapositiva
 function nextSlide() {
   if (currentSlideIndex < totalSlides - 1) {
     currentSlideIndex++;
@@ -54,7 +35,6 @@ function nextSlide() {
   }
 }
 
-// Navegar a diapositiva anterior
 function previousSlide() {
   if (currentSlideIndex > 0) {
     currentSlideIndex--;
@@ -62,26 +42,38 @@ function previousSlide() {
   }
 }
 
-// Navegar con teclado
+function updateSlideDisplay() {
+  showSlide(currentSlideIndex);
+}
+
+// Navegación por teclado
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowRight' || e.key === ' ') {
-    e.preventDefault();
-    nextSlide();
-  } else if (e.key === 'ArrowLeft') {
-    e.preventDefault();
-    previousSlide();
-  } else if (e.key === 'Home') {
-    e.preventDefault();
-    currentSlideIndex = 0;
-    showSlide(currentSlideIndex);
-  } else if (e.key === 'End') {
-    e.preventDefault();
-    currentSlideIndex = totalSlides - 1;
-    showSlide(currentSlideIndex);
+  switch(e.key) {
+    case 'ArrowRight':
+    case ' ':
+    case 'PageDown':
+      e.preventDefault();
+      nextSlide();
+      break;
+    case 'ArrowLeft':
+    case 'PageUp':
+      e.preventDefault();
+      previousSlide();
+      break;
+    case 'Home':
+      e.preventDefault();
+      currentSlideIndex = 0;
+      showSlide(currentSlideIndex);
+      break;
+    case 'End':
+      e.preventDefault();
+      currentSlideIndex = totalSlides - 1;
+      showSlide(currentSlideIndex);
+      break;
   }
 });
 
-// Navegación táctil
+// Soporte para swipe en dispositivos táctiles
 let touchStartX = 0;
 let touchEndX = 0;
 
@@ -96,22 +88,15 @@ document.addEventListener('touchend', (e) => {
 
 function handleSwipe() {
   const swipeThreshold = 50;
+  const diff = touchStartX - touchEndX;
   
-  if (touchEndX < touchStartX - swipeThreshold) {
-    // Swipe left - next slide
-    nextSlide();
-  }
-  
-  if (touchEndX > touchStartX + swipeThreshold) {
-    // Swipe right - previous slide
-    previousSlide();
+  if (Math.abs(diff) > swipeThreshold) {
+    if (diff > 0) {
+      // Swipe izquierda - siguiente
+      nextSlide();
+    } else {
+      // Swipe derecha - anterior
+      previousSlide();
+    }
   }
 }
-
-// Inicializar
-updateButtons();
-
-// Mensaje de consola
-console.log('🎯 Presentación cargada correctamente');
-console.log('📌 Usa las flechas del teclado o los botones para navegar');
-console.log('⌨️ Atajos: ← → (navegación), Home (primera), End (última), Espacio (siguiente)');

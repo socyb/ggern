@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presentación · Apuntes y Repaso: Sistemas, Recursos y Sostenibilidad</title>
+  <style>
+    :root {
+      --blue-deep: #174a7e;
+      --blue-light: #7bb6e9;
+      --white: #ffffff;
+      --rose: #c94a5a;
+      --rose-dark: #8b2d3a;
+      --ink: #1a2636;
+      --green: #10b981;
+      --yellow: #fbbf24;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, var(--blue-deep) 0%, var(--ink) 100%);
+      color: var(--white);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    
+    /* Header de presentación */
+    .presentation-header {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .header-info h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    
+    .header-info p {
+      font-size: 0.875rem;
+      opacity: 0.8;
+    }
+    
+    .slide-counter {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--rose);
+    }
+    
+    /* Contenedor principal */
+    .presentation-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+    }
+    
+    /* Diapositiva */
+    .slide {
+      background: rgba(255, 255, 255, 0.98);
+      color: var(--ink);
+      border-radius: 30px;
+      padding: 3rem;
+      max-width: 1100px;
+      width: 100%;
+      min-height: 600px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      display: none;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .slide.active {
+      display: flex;
+      animation: slideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    /* Contenido de diapositiva */
+    .slide-header {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    
+    .slide-number {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-light));
+      color: var(--white);
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .slide h2 {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--blue-deep);
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+    
+    .slide-subtitle {
+      font-size: 1.25rem;
+      color: var(--rose);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    
+    .slide-content {
+      flex: 1;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    
+    .content-text {
+      flex: 1;
+    }
+    
+    .content-visual {
+      flex: 0 0 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    /* Animaciones de elementos visuales */
+    .animated-element {
+      width: 200px;
+      height: 200px;
+      position: relative;
+    }
+    
+    .circle-element {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-light), var(--rose));
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+    }
+    
+    .arrow-cycle {
+      width: 250px;
+      height: 250px;
+      position: relative;
+    }
+    
+    .arrow {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: var(--rose);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 50% 70%, 0% 50%, 50% 30%);
+    }
+    
+    .arrow-1 { top: 0; left: 50%; transform: translateX(-50%) rotate(0deg); animation: arrowMove 2s ease-in-out infinite; }
+    .arrow-2 { top: 50%; right: 0; transform: translateY(-50%) rotate(90deg); animation: arrowMove 2s ease-in-out 0.5s infinite; }
+    .arrow-3 { bottom: 0; left: 50%; transform: translateX(-50%) rotate(180deg); animation: arrowMove 2s ease-in-out 1s infinite; }
+    .arrow-4 { top: 50%; left: 0; transform: translateY(-50%) rotate(270deg); animation: arrowMove 2s ease-in-out 1.5s infinite; }
+    
+    @keyframes arrowMove {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
+    }
+    
+    .balance-scale {
+      width: 250px;
+      height: 200px;
+      position: relative;
+    }
+    
+    .scale-beam {
+      width: 200px;
+      height: 8px;
+      background: var(--ink);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: center;
+      transform: translate(-50%, -50%);
+      animation: tilt 3s ease-in-out infinite;
+      border-radius: 4px;
+    }
+    
+    .scale-pan {
+      width: 60px;
+      height: 60px;
+      background: var(--blue-light);
+      border-radius: 10px;
+      position: absolute;
+      top: 70%;
+    }
+    
+    .scale-pan.left { left: 10px; }
+    .scale-pan.right { right: 10px; }
+    
+    @keyframes tilt {
+      0%, 100% { transform: translate(-50%, -50%) rotate(-10deg); }
+      50% { transform: translate(-50%, -50%) rotate(10deg); }
+    }
+    
+    .growth-bars {
+      width: 250px;
+      height: 200px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-around;
+      gap: 10px;
+      padding: 10px;
+    }
+    
+    .bar {
+      width: 40px;
+      background: linear-gradient(180deg, var(--rose), var(--rose-dark));
+      border-radius: 10px 10px 0 0;
+      animation-duration: 2s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+    }
+    
+    .bar-1 { height: 30%; animation-name: grow1; animation-delay: 0s; }
+    .bar-2 { height: 50%; animation-name: grow2; animation-delay: 0.3s; }
+    .bar-3 { height: 70%; animation-name: grow3; animation-delay: 0.6s; }
+    .bar-4 { height: 90%; animation-name: grow4; animation-delay: 0.9s; }
+    
+    @keyframes grow1 {
+      0%, 100% { height: 30%; }
+      50% { height: 40%; }
+    }
+    
+    @keyframes grow2 {
+      0%, 100% { height: 50%; }
+      50% { height: 65%; }
+    }
+    
+    @keyframes grow3 {
+      0%, 100% { height: 70%; }
+      50% { height: 85%; }
+    }
+    
+    @keyframes grow4 {
+      0%, 100% { height: 90%; }
+      50% { height: 95%; }
+    }
+    
+    .resource-flow {
+      width: 250px;
+      height: 200px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    .flow-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      animation: flowPulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes flowPulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      }
+      50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 20px rgba(16, 185, 129, 0);
+      }
+    }
+    
+    .flow-arrow {
+      width: 40px;
+      height: 40px;
+      background: var(--blue-light);
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 50% 70%, 0% 50%, 50% 30%);
+      animation: flowDown 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes flowDown {
+      0%, 100% { transform: translateY(-10px); opacity: 0.3; }
+      50% { transform: translateY(10px); opacity: 1; }
+    }
+    
+    .stock-container {
+      width: 250px;
+      height: 200px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .stock-barrel {
+      width: 120px;
+      height: 160px;
+      background: linear-gradient(135deg, var(--ink), var(--blue-deep));
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .stock-level {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: linear-gradient(180deg, var(--yellow), #d97706);
+      animation: deplete 4s ease-in-out infinite;
+    }
+    
+    @keyframes deplete {
+      0% { height: 80%; }
+      100% { height: 20%; }
+    }
+    
+    .ecosystem-circle {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), var(--blue-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: rotate 10s linear infinite;
+    }
+    
+    .ecosystem-element {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    
+    .ecosystem-element:nth-child(1) { top: 10%; left: 50%; transform: translateX(-50%); }
+    .ecosystem-element:nth-child(2) { top: 50%; right: 10%; transform: translateY(-50%); }
+    .ecosystem-element:nth-child(3) { bottom: 10%; left: 50%; transform: translateX(-50%); }
+    .ecosystem-element:nth-child(4) { top: 50%; left: 10%; transform: translateY(-50%); }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Lista con viñetas */
+    .slide ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .slide li {
+      padding: 0.75rem 0;
+      padding-left: 2rem;
+      position: relative;
+      font-size: 1.125rem;
+      line-height: 1.7;
+      animation: fadeInUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+    
+    .slide li:nth-child(1) { animation-delay: 0.2s; }
+    .slide li:nth-child(2) { animation-delay: 0.4s; }
+    .slide li:nth-child(3) { animation-delay: 0.6s; }
+    .slide li:nth-child(4) { animation-delay: 0.8s; }
+    .slide li:nth-child(5) { animation-delay: 1s; }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .slide li::before {
+      content: '▶';
+      position: absolute;
+      left: 0;
+      color: var(--rose);
+      font-size: 1rem;
+    }
+    
+    /* Controles de navegación */
+    .controls {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 1rem;
+      z-index: 10;
+    }
+    
+    .control-btn {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: var(--white);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .control-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+    
+    .control-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+    
+    .back-link {
+      position: fixed;
+      top: 1rem;
+      right: 2rem;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      color: var(--white);
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    
+    .back-link:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+    
+    /* Footer de presentación */
+    .presentation-footer {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border-top: 2px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.875rem;
+    }
+    
+    .footer-left {
+      opacity: 0.9;
+    }
+    
+    .footer-right {
+      opacity: 0.9;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .slide {
+        padding: 2rem;
+        min-height: 500px;
+      }
+      
+      .slide h2 {
+        font-size: 2rem;
+      }
+      
+      .slide-content {
+        flex-direction: column;
+      }
+      
+      .content-visual {
+        flex: 0 0 200px;
+      }
+      
+      .animated-element,
+      .arrow-cycle,
+      .balance-scale,
+      .growth-bars,
+      .resource-flow,
+      .stock-container,
+      .ecosystem-circle {
+        transform: scale(0.8);
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back-link">← Regresar</a>
+  
+  <!-- Header -->
+  <div class="presentation-header">
+    <div class="header-info">
+      <h1>Apuntes y Repaso: Sistemas, Recursos y Sostenibilidad</h1>
+      <p>Dr. Jorge Cardiel Herrera · Gobierno, Gestión de Energía y Recursos Naturales</p>
+    </div>
+    <div class="slide-counter">
+      <span id="currentSlide">1</span> / <span id="totalSlides">10</span>
+    </div>
+  </div>
+  
+  <!-- Contenedor de presentación -->
+  <div class="presentation-container">
+    
+    <!-- Diapositiva 1: Portada -->
+    <div class="slide active" data-slide="1">
+      <div class="slide-header">
+        <span class="slide-number">Diapositiva 1</span>
+        <h2>Pensamiento Sistémico</h2>
+        <p class="slide-subtitle">Una nueva forma de entender la complejidad</p>
+      </div>
+      <div class="slide-content">
+        <div class="content-text">
+          <ul>
+            <li>Comprender el mundo como sistemas interconectados</li>
+            <li>Identificar bucles de retroalimentación</li>
+            <li>Reconocer patrones de comportamiento</li>
+            <li>Anticipar consecuencias no intencionales</li>
+          </ul>
+        </div>
+        <div class="content-visual">
+          <div class="animated-element">
+            <div class="circle-element"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Diapositiva 2: Bucles de Retroalimentación -->
+    <div class="slide" data-slide="2">
+      <div class="slide-header">
+        <span class="slide-number">Diapositiva 2</span>
+        <h2>Bucles de Retroalimentación</h2>
+        <p class="slide-subtitle">El motor de los sistemas dinámicos</p>
+      </div>
+      <div class="slide-content">
+        <div class="content-text">
+          <ul>
+            <li><strong>Bucles de Refuerzo:</strong> amplifican el cambio</li>
+            <li><strong>Bucles de Balanceo:</strong> buscan equilibrio</li>
+            <li>Todo sistema combina ambos tipos de bucles</li>
+            <li>Los bucles determinan el comportamiento del sistema</li>
+          </ul>
+        </div>
+        <div class="content-visual">
+          <div class="arrow-cycle">
+            <div class="arrow arrow-1"></div>
+            <div class="arrow arrow-2"></div>
+            <div class="arrow arrow-3"></div>
+            <div class="arrow arrow-4"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Diapositiva 3: Bucle de Refuerzo -->
+    <div class="slide" data-slide="3">
+      <div class="slide-header">
+        <span class="slide-number">Diapositiva 3</span>
+        <h2>Bucle de Refuerzo</h2>
+        <p class="slide-subtitle">El círculo virtuoso (o vicioso)</p>
+      </div>
+      <div class="slide-content">
+        <div class="content-text">
+          <ul>
+            <li>Amplifica el cambio en cualquier dirección</li>
+            <li>Ejemplo: Más capital → Más extracción → Más ganancias</li>
+            <li>Puede generar crecimiento exponencial</li>
+            <li>También puede acelerar el colapso</li>
+            <li>Requiere bucles de balanceo para estabilizarse</li>
+          </ul>
+        </div>
+        <div class="content-visual">
+          <div class="growth-bars">
+            <div class="bar bar-1"></div>
+            <div class="bar bar-2"></div>
+            <div class="bar bar-3"></div>
+            <div class="bar bar-4"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Diapositiva 4: Bucle de Balanceo -->
+    <div class="slide" data-slide="4">
+      <div class="slide-header">
+        <span class="slide-number">Diapositiva 4</span>
+        <h2>Bucle de Balanceo</h2>
+        <p class="slide-subtitle">El estabilizador natural</p>
+      </div>
+      <div class="slide-content">
+        <div class="content-text">
+          <ul>
+            <li>Contrarresta el cambio y busca equilibrio</li>
+            <li>Actúa como termostato del sistema</li>
+            <li>Impone límites al crecimiento exponencial</li>
+            <li>Puede generar oscilaciones alrededor del equilibrio</li>
+            <li>Esencial para la sostenibilidad a largo plazo</li>
+          </ul>
+        </div>
+        <div class="content-visual">
+          <div class="balance-scale">
+            <div class="scale-beam"></div>
+            <div class="scale-pan left"></div>
+            <div class="scale-pan right"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Diapositiva 5: Recursos Renovables -->
+    <div class="slide" data-slide="5">
+      <div class="slide-header">
+        <span class="slide-number">Diapositiva 5</span>
+        <h2>Recursos Renovables</h2>
+        <p class="slide-subtitle">Flow-Limited: limitados por su tasa de regeneración</p>
+      </div>
+      <div class="slide-content">
+        <div class="content-text">
+          <ul>
+            <li>Pueden regenerarse naturalmente</li>
+            <li>Ejemplos: pesca, bosques, energía solar</li>
+            <li>Limitados por su <strong>flujo</strong> de regeneración</li>
+            <li>Requieren gestión sostenible de extracción</li>
+            <li>La sobreexplotación puede llevar al colapso</li>
+          </ul>
+        </div>
+        <div class="content-visual">
+          <div class="resource-flow">
+            <div class="flow-circle">🌲</div>
+            <div class="flow-arrow"></div>
+            <div class="flow-circle">♻️</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Diapositiva 6: Recursos No Renovables -->
+    <div class="slide" data-slide="6">
+      <div class="slide-header">
+        <span class="slide-number">Diapositiva 6</span>
+        <h2>Recursos No Renovables</h2>
+        <p class="slide-subtitle">Stock-Limited: cantidad fija que se agota</p>
+      </div>
+      <div class="slide-content">
+        <div class="content-text">
+          <ul>
+            <li>No se regeneran a escala humana</li>
+            <li>Ejemplos: petróleo, gas natural, minerales</li>
+            <li>Limitados por su <strong>stock</strong> total disponible</li>
+            <li>El agotamiento es inevitable sin transición</li>
+            <li>Requieren estrategia de sustitución</li>
+          </ul>
+        </div>
+        <div class="content-visual">
+          <div class="stock-container">
+            <div class="stock-barrel">
+              <div class="stock-level"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Diapositiva 7: Límites al Crecimiento -->
+    <div class="slide" data-slide="7">
+      <div class="slide-header">
+        <span class="slide-number">Diapositiva 7</span>
+        <h2>Límites al Crecimiento</h2>
+        <p class="slide-subtitle">La realidad de un planeta finito</p>
+      </div>
+      <div class="slide-content">
+        <div class="content-text">
+          <ul>
+            <li>Ningún crecimiento exponencial puede ser perpetuo</li>
+            <li>Los sistemas físicos operan en entornos finitos</li>
+            <li>Los límites pueden ser físicos, ecológicos o sociales</li>
+            <li>Ignorar los límites conduce al colapso</li>
+            <li>La sostenibilidad requiere reconocer estos límites</li>
+          </ul>
+        </div>
+        <div class="content-visual">
+          <div class="growth-bars">
+            <div class="bar bar-4"></div>
+            <div class="bar bar-3"></div>
+            <div class="bar bar-2"></div>
+            <div class="bar bar-1"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Diapositiva 8: Sobreexplotación y Colapso -->
+    <div class="slide" data-slide="8">
+      <div class="slide-header">
+        <span class="slide-number">Diapositiva 8</span>
+        <h2>Sobreexplotación y Colapso</h2>
+        <p class="slide-subtitle">Cuando se excede la capacidad de carga</p>
+      </div>
+      <div class="slide-content">
+        <div class="content-text">
+          <ul>
+            <li><strong>Overshoot:</strong> superar la capacidad del sistema</li>
+            <li>Puede resultar en oscilaciones o colapso total</li>
+            <li>Afecta tanto al recurso como a la industria</li>
+            <li>Los señales de advertencia suelen ser ignorados</li>
+            <li>La recuperación puede ser muy lenta o imposible</li>
+          </ul>
+        </div>
+        <div class="content-visual">
+          <div class="balance-scale">
+            <div class="scale-beam"></div>
+            <div class="scale-pan left"></div>
+            <div class="scale-pan right"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Diapositiva 9: Gestión Sostenible -->
+    <div class="slide" data-slide="9">
+      <div class="slide-header">
+        <span class="slide-number">Diapositiva 9</span>
+        <h2>Gestión Sostenible</h2>
+        <p class="slide-subtitle">Hacia un equilibrio dinámico</p>
+      </div>
+      <div class="slide-content">
+        <div class="content-text">
+          <ul>
+            <li>Transición de no renovables a renovables</li>
+            <li>Respetar tasas de regeneración natural</li>
+            <li>Implementar economía circular</li>
+            <li>Fortalecer bucles de balanceo</li>
+            <li>Planificación a largo plazo con visión sistémica</li>
+          </ul>
+        </div>
+        <div class="content-visual">
+          <div class="ecosystem-circle">
+            <div class="ecosystem-element">🌍</div>
+            <div class="ecosystem-element">⚡</div>
+            <div class="ecosystem-element">💧</div>
+            <div class="ecosystem-element">🌱</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Diapositiva 10: Conclusiones -->
+    <div class="slide" data-slide="10">
+      <div class="slide-header">
+        <span class="slide-number">Diapositiva 10</span>
+        <h2>Reflexiones Finales</h2>
+        <p class="slide-subtitle">Pensamiento sistémico para un futuro sostenible</p>
+      </div>
+      <div class="slide-content">
+        <div class="content-text">
+          <ul>
+            <li>Los sistemas complejos requieren visión holística</li>
+            <li>Cada decisión tiene efectos en múltiples niveles</li>
+            <li>La sostenibilidad es posible con diseño consciente</li>
+            <li>Debemos aprender a vivir dentro de los límites</li>
+            <li>El cambio empieza por comprender los sistemas</li>
+          </ul>
+        </div>
+        <div class="content-visual">
+          <div class="animated-element">
+            <div class="circle-element"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <!-- Controles -->
+  <div class="controls">
+    <button class="control-btn" id="prevBtn" onclick="previousSlide()">◀</button>
+    <button class="control-btn" id="nextBtn" onclick="nextSlide()">▶</button>
+  </div>
+  
+  <!-- Footer -->
+  <div class="presentation-footer">
+    <div class="footer-left">
+      Dr. Jorge Cardiel Herrera
+    </div>
+    <div class="footer-right">
+      Octubre 22, 2025 · FCA, UNAM
+    </div>
+  </div>
+  
+  <script src="js/presentacion.js"></script>
+</body>
+</html>
