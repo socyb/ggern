@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presentación · Actividad 9 · Extractivismo Verde</title>
+  <style>
+    :root {
+      --green-dark: #065f46;
+      --green: #10b981;
+      --green-light: #6ee7b7;
+      --white: #ffffff;
+      --ink: #1a2636;
+      --orange: #f97316;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--ink) 100%);
+      color: var(--white);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    
+    .presentation-header {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .header-info h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    
+    .header-info p {
+      font-size: 0.875rem;
+      opacity: 0.8;
+    }
+    
+    .slide-counter {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--green-light);
+    }
+    
+    .presentation-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+    }
+    
+    .slide {
+      background: rgba(255, 255, 255, 0.98);
+      color: var(--ink);
+      border-radius: 30px;
+      padding: 3rem;
+      max-width: 1100px;
+      width: 100%;
+      min-height: 600px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      display: none;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .slide.active {
+      display: flex;
+      animation: slideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    .slide-header {
+      margin-bottom: 2rem;
+    }
+    
+    .slide-number {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      color: var(--white);
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .slide h2 {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--green-dark);
+      margin-bottom: 0.75rem;
+      line-height: 1.1;
+    }
+    
+    .slide-subtitle {
+      font-size: 1.25rem;
+      color: var(--orange);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+    
+    .slide-content {
+      flex: 1;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    
+    .content-text {
+      flex: 1;
+    }
+    
+    .content-visual {
+      flex: 0 0 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .slide ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .slide li {
+      padding: 0.75rem 0;
+      padding-left: 2rem;
+      position: relative;
+      font-size: 1.125rem;
+      line-height: 1.7;
+      animation: fadeInUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+    
+    .slide li:nth-child(1) { animation-delay: 0.2s; }
+    .slide li:nth-child(2) { animation-delay: 0.4s; }
+    .slide li:nth-child(3) { animation-delay: 0.6s; }
+    .slide li:nth-child(4) { animation-delay: 0.8s; }
+    .slide li:nth-child(5) { animation-delay: 1s; }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .slide li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    
+    /* Animaciones visuales */
+    .lithium-triangle {
+      width: 250px;
+      height: 250px;
+      position: relative;
+    }
+    
+    .triangle-point {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      animation: pulse 2s ease-in-out infinite;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+    }
+    
+    .triangle-point:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); animation-delay: 0s; }
+    .triangle-point:nth-child(2) { bottom: 20px; left: 0; animation-delay: 0.3s; }
+    .triangle-point:nth-child(3) { bottom: 20px; right: 0; animation-delay: 0.6s; }
+    
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+    }
+    
+    .discourse-bubbles {
+      width: 250px;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .bubble {
+      background: var(--green-light);
+      padding: 1rem 1.5rem;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink);
+      animation: float 3s ease-in-out infinite;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .bubble:nth-child(1) { animation-delay: 0s; }
+    .bubble:nth-child(2) { animation-delay: 0.5s; }
+    .bubble:nth-child(3) { animation-delay: 1s; }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .water-drops {
+      width: 250px;
+      height: 200px;
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-end;
+      padding: 20px;
+    }
+    
+    .drop {
+      width: 40px;
+      height: 60px;
+      background: linear-gradient(180deg, #3b82f6, #1e40af);
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      animation: drip 2s ease-in-out infinite;
+      opacity: 0;
+    }
+    
+    .drop:nth-child(1) { animation-delay: 0s; }
+    .drop:nth-child(2) { animation-delay: 0.4s; }
+    .drop:nth-child(3) { animation-delay: 0.8s; }
+    .drop:nth-child(4) { animation-delay: 1.2s; }
+    
+    @keyframes drip {
+      0% { opacity: 0; transform: translateY(-50px) rotate(-45deg); }
+      50% { opacity: 1; transform: translateY(0) rotate(-45deg); }
+      100% { opacity: 0; transform: translateY(20px) rotate(-45deg); }
+    }
+    
+    .balance-beam {
+      width: 250px;
+      height: 200px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .beam {
+      width: 200px;
+      height: 10px;
+      background: var(--ink);
+      border-radius: 5px;
+      transform-origin: center;
+      animation: tilt 3s ease-in-out infinite;
+      position: relative;
+    }
+    
+    .beam-side {
+      position: absolute;
+      top: -60px;
+      width: 70px;
+      height: 50px;
+      background: var(--green);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    
+    .beam-side.left { left: 0; }
+    .beam-side.right { right: 0; }
+    
+    @keyframes tilt {
+      0%, 100% { transform: rotate(-8deg); }
+      50% { transform: rotate(8deg); }
+    }
+    
+    .growth-icon {
+      width: 250px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8rem;
+      animation: grow 2s ease-in-out infinite;
+    }
+    
+    @keyframes grow {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+    
+    .circuit {
+      width: 250px;
+      height: 250px;
+      border: 5px solid var(--green);
+      border-radius: 50%;
+      position: relative;
+      animation: rotate 10s linear infinite;
+    }
+    
+    .circuit-dot {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: var(--orange);
+      border-radius: 50%;
+    }
+    
+    .circuit-dot:nth-child(1) { top: -15px; left: 50%; transform: translateX(-50%); }
+    .circuit-dot:nth-child(2) { top: 50%; right: -15px; transform: translateY(-50%); }
+    .circuit-dot:nth-child(3) { bottom: -15px; left: 50%; transform: translateX(-50%); }
+    .circuit-dot:nth-child(4) { top: 50%; left: -15px; transform: translateY(-50%); }
+    
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .controls {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 1rem;
+      z-index: 10;
+    }
+    
+    .control-btn {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: var(--white);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .control-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+    
+    .control-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+    
+    .back-link {
+      position: fixed;
+      top: 1rem;
+      right: 2rem;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      color: var(--white);
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    
+    .back-link:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+    
+    .presentation-footer {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      border-top: 2px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.875rem;
+    }
+    
+    .footer-left,
+    .footer-right {
+      opacity: 0.9;
+    }
+    
+    @media (max-width: 768px) {
+      .slide {
+        padding: 2rem;
+        min-height: 500px;
+      }
+      
+      .slide h2 {
+        font-size: 2rem;
+      }
+      
+      .slide-content {
+        flex-direction: column;
+      }
+      
+      .content-visual {
+        flex: 0 0 200px;
+        transform: scale(0.8);
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back-link">← Regresar</a>
+  
+  <div class="presentation-header">
+    <div class="header-info">
+      <h1>Actividad 9 · Extractivismo Verde y el Litio</h1>
+      <p>Dr. Jorge Cardiel Herrera · Gobierno, Gestión de Energía y Recursos Naturales</p>
+    </div>
+    <div class="slide-counter">
+      <span id="currentSlide">1</span> / <span id="totalSlides">8</span>
+    </div>
+  </div>
+  
+  <div class="presentation-container">
+    
+    <!-- Diapositiva 1 -->
+    <div class="slide active" data-slide="1">
+      <div class="slide-header">
+        <span class="slide-number">Diapositiva 1</span>
+        <h2>Extractivismo Verde</h2>
+        <p class="slide-subtitle">El litio en Sudamérica: nueva narrativa, vieja lógica</p>
+      </div>
+      <div class="slide-content">
+        <div class="content-text">
+          <ul>
+            <li>Transición energética como oportunidad de acumulación</li>
+            <li>Lenguaje de sostenibilidad oculta impactos socioambientales</li>
+            <li>Reconfigura el viejo imaginario del progreso nacional</li>
+            <li>Nueva etapa del capitalismo extractivo</li>
+          </ul>
+        </div>
+        <div class="content-visual">
+          <div class="growth-icon">🌿</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Diapositiva 2 -->
+    <div class="slide" data-slide="2">
+      <div class="slide-header">
+        <span class="slide-number">Diapositiva 2</span>
+        <h2>Triángulo del Litio</h2>
+        <p class="slide-subtitle">Bolivia, Chile y Argentina</p>
+      </div>
+      <div class="slide-content">
+        <div class="content-text">
+          <ul>
+            <li><strong>Salar de Uyuni</strong> (Bolivia) - Mayor reserva mundial</li>
+            <li><strong>Salar de Atacama</strong> (Chile) - Mayor producción actual</li>
+            <li><strong>Salinas Grandes</strong> (Argentina) - Expansión reciente</li>
+            <li>Concentra la mayor parte de reservas mundiales de litio</li>
+            <li>Territorio disputado entre desarrollo y conservación</li>
+          </ul>
+        </div>
+        <div class="content-visual">
+          <div class="lithium-triangle">
+            <div class="triangle-point">🇧🇴</div>
+            <div class="triangle-point">🇨🇱</div>
+            <div class="triangle-point">🇦🇷</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Diapositiva 3 -->
+    <div class="slide" data-slide="3">
+      <div class="slide-header">
+        <span class="slide-number">Diapositiva 3</span>
+        <h2>Discursos de Legitimación</h2>
+        <p class="slide-subtitle">Cómo se justifica la extracción</p>
+      </div>
+      <div class="slide-content">
+        <div class="content-text">
+          <ul>
+            <li><strong>Desarrollo:</strong> industrialización y modernización tecnológica</li>
+            <li><strong>Soberanía:</strong> "el banco del siglo XXI", orgullo nacional</li>
+            <li><strong>Ambientalismo:</strong> minería limpia para autos eléctricos</li>
+            <li>Promesas de independencia económica y liderazgo global</li>
+          </ul>
+        </div>
+        <div class="content-visual">
+          <div class="discourse-bubbles">
+            <div class="bubble">Desarrollo</div>
+            <div class="bubble">Soberanía</div>
+            <div class="bubble">Verde</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Diapositiva 4 -->
+    <div class="slide" data-slide="4">
+      <div class="slide-header">
+        <span class="slide-number">Diapositiva 4</span>
+        <h2>Los Imaginarios</h2>
+        <p class="slide-subtitle">Figuras simbólicas del progreso</p>
+      </div>
+      <div class="slide-content">
+        <div class="content-text">
+          <ul>
+            <li><em>"El oro blanco"</em> - riqueza y oportunidad</li>
+            <li><em>"El petróleo del siglo XXI"</em> - Macri y Bachelet</li>
+            <li><em>"El banco del siglo XXI"</em> - García Linera</li>
+            <li>Ventana de oportunidad que urge aprovechar</li>
+            <li>Símbolos que naturalizan la extracción</li>
+          </ul>
+        </div>
+        <div class="content-visual">
+          <div class="circuit">
+            <div class="circuit-dot"></div>
+            <div class="circuit-dot"></div>
+            <div class="circuit-dot"></div>
+            <div class="circuit-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Diapositiva 5 -->
+    <div class="slide" data-slide="5">
+      <div class="slide-header">
+        <span class="slide-number">Diapositiva 5</span>
+        <h2>Costos Ocultos</h2>
+        <p class="slide-subtitle">La paradoja hídrica</p>
+      </div>
+      <div class="slide-content">
+        <div class="content-text">
+          <ul>
+            <li><strong>2 millones de litros de agua</strong> por tonelada de litio</li>
+            <li>Destrucción de ecosistemas acuíferos en salares</li>
+            <li>Impactos en comunidades indígenas y campesinas</li>
+            <li>Recurso para movilidad eléctrica que degrada territorios</li>
+            <li>Se ocultan costos socioambientales tras retórica verde</li>
+          </ul>
+        </div>
+        <div class="content-visual">
+          <div class="water-drops">
+            <div class="drop"></div>
+            <div class="drop"></div>
+            <div class="drop"></div>
+            <div class="drop"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Diapositiva 6 -->
+    <div class="slide" data-slide="6">
+      <div class="slide-header">
+        <span class="slide-number">Diapositiva 6</span>
+        <h2>Contra-discursos</h2>
+        <p class="slide-subtitle">Las voces de los territorios</p>
+      </div>
+      <div class="slide-content">
+        <div class="content-text">
+          <ul>
+            <li>Comunidades indígenas desmontan la retórica verde</li>
+            <li><em>"El agua vale más que el litio"</em></li>
+            <li><em>"No comemos baterías"</em></li>
+            <li>Salares como <strong>territorios de vida</strong>, no zonas de sacrificio</li>
+            <li>Resistencias locales frente al discurso del desarrollo</li>
+          </ul>
+        </div>
+        <div class="content-visual">
+          <div class="balance-beam">
+            <div class="beam">
+              <div class="beam-side left">💧</div>
+              <div class="beam-side right">🔋</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Diapositiva 7 -->
+    <div class="slide" data-slide="7">
+      <div class="slide-header">
+        <span class="slide-number">Diapositiva 7</span>
+        <h2>Tensiones Analíticas</h2>
+        <p class="slide-subtitle">Lo que el discurso verde no resuelve</p>
+      </div>
+      <div class="slide-content">
+        <div class="content-text">
+          <ul>
+            <li>El progreso se <strong>reconfigura</strong>, no se transforma</li>
+            <li>Gobernanza por persuasión, no por coerción</li>
+            <li>Nuevas dependencias bajo apariencia de autonomía</li>
+            <li>Transición desigual: Sur provee, Norte consume</li>
+            <li>Brecha de valor: exportar materia prima sin desarrollo real</li>
+          </ul>
+        </div>
+        <div class="content-visual">
+          <div class="growth-icon">⚠️</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Diapositiva 8 -->
+    <div class="slide" data-slide="8">
+      <div class="slide-header">
+        <span class="slide-number">Diapositiva 8</span>
+        <h2>Reflexión Final</h2>
+        <p class="slide-subtitle">Mitigación climática con justicia ecológica</p>
+      </div>
+      <div class="slide-content">
+        <div class="content-text">
+          <ul>
+            <li>El litio encarna la ambigüedad de la transición ecológica</li>
+            <li>Promesa de futuro limpio con viejas formas de despojo</li>
+            <li>¿Transición energética o colonialismo verde?</li>
+            <li>El desafío: reconciliar clima y justicia ambiental</li>
+            <li>No convertir la esperanza verde en eslogan de mercado</li>
+          </ul>
+        </div>
+        <div class="content-visual">
+          <div class="growth-icon">🌍</div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="controls">
+    <button class="control-btn" id="prevBtn" onclick="previousSlide()">◀</button>
+    <button class="control-btn" id="nextBtn" onclick="nextSlide()">▶</button>
+  </div>
+  
+  <div class="presentation-footer">
+    <div class="footer-left">Dr. Jorge Cardiel Herrera</div>
+    <div class="footer-right">Octubre 22, 2025 · FCA, UNAM</div>
+  </div>
+  
+  <script src="js/presentacion.js"></script>
+</body>
+</html>
